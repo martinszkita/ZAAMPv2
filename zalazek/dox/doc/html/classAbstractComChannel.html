@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Interpreter: Dokumentacja klasy AbstractComChannel</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Interpreter<span id="projectnumber">&#160;0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano przez Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Szukaj');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classAbstractComChannel.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Metody publiczne</a> &#124;
+<a href="classAbstractComChannel-members.html">Lista wszystkich składowych</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentacja klasy AbstractComChannel<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Definiuje interfejs kanału komunikacyjnego z serwerem graficznym.  
+ <a href="classAbstractComChannel.html#details">Więcej...</a></p>
+
+<p><code>#include &lt;<a class="el" href="AbstractComChannel_8hh_source.html">AbstractComChannel.hh</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Metody publiczne</h2></td></tr>
+<tr class="memitem:a6681cbe779f993ea7d5866fb9dbabf31" id="r_a6681cbe779f993ea7d5866fb9dbabf31"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractComChannel.html#a6681cbe779f993ea7d5866fb9dbabf31">~AbstractComChannel</a> ()</td></tr>
+<tr class="separator:a6681cbe779f993ea7d5866fb9dbabf31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12bc2f47aef4061287452a8ba72b418e" id="r_a12bc2f47aef4061287452a8ba72b418e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractComChannel.html#a12bc2f47aef4061287452a8ba72b418e">Init</a> (int Socket)=0</td></tr>
+<tr class="memdesc:a12bc2f47aef4061287452a8ba72b418e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Inicjalizuje destryptor gniazda.  <br /></td></tr>
+<tr class="separator:a12bc2f47aef4061287452a8ba72b418e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c74268f2b882d5b45dce38426ab1552" id="r_a2c74268f2b882d5b45dce38426ab1552"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractComChannel.html#a2c74268f2b882d5b45dce38426ab1552">GetSocket</a> () const =0</td></tr>
+<tr class="memdesc:a2c74268f2b882d5b45dce38426ab1552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Udostępnia deskryptor pliku skojarzonego z połączeniem sieciowym z serwerem.  <br /></td></tr>
+<tr class="separator:a2c74268f2b882d5b45dce38426ab1552"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addb98637c15e1c8dc09e9740f8a4a1d3" id="r_addb98637c15e1c8dc09e9740f8a4a1d3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractComChannel.html#addb98637c15e1c8dc09e9740f8a4a1d3">LockAccess</a> ()=0</td></tr>
+<tr class="memdesc:addb98637c15e1c8dc09e9740f8a4a1d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zamyka dostęp gniazda.  <br /></td></tr>
+<tr class="separator:addb98637c15e1c8dc09e9740f8a4a1d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef7d3a52c328426a943bb41e4929d5d2" id="r_aef7d3a52c328426a943bb41e4929d5d2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractComChannel.html#aef7d3a52c328426a943bb41e4929d5d2">UnlockAccess</a> ()=0</td></tr>
+<tr class="memdesc:aef7d3a52c328426a943bb41e4929d5d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Otwiera dostęp do gniazda.  <br /></td></tr>
+<tr class="separator:aef7d3a52c328426a943bb41e4929d5d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ae9e4989487f6664d46a7ddf702ff55" id="r_a8ae9e4989487f6664d46a7ddf702ff55"><td class="memItemLeft" align="right" valign="top">virtual std::mutex &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractComChannel.html#a8ae9e4989487f6664d46a7ddf702ff55">UseGuard</a> ()</td></tr>
+<tr class="memdesc:a8ae9e4989487f6664d46a7ddf702ff55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Udostępnia mutex w trybie modyfikacji.  <br /></td></tr>
+<tr class="separator:a8ae9e4989487f6664d46a7ddf702ff55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Opis szczegółowy</h2>
+<div class="textblock"><p>Definiuje interfejs kanału komunikacyjnego z serwerem graficznym. Interfejs ma pozwalać na bezpieczną komunikację w programie wielowątkowym. </p>
+
+<p class="definition">Definicja w linii <a class="el" href="AbstractComChannel_8hh_source.html#l00021">21</a> pliku <a class="el" href="AbstractComChannel_8hh_source.html">AbstractComChannel.hh</a>.</p>
+</div><h2 class="groupheader">Dokumentacja konstruktora i destruktora</h2>
+<a id="a6681cbe779f993ea7d5866fb9dbabf31" name="a6681cbe779f993ea7d5866fb9dbabf31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6681cbe779f993ea7d5866fb9dbabf31">&#9670;&#160;</a></span>~AbstractComChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual AbstractComChannel::~AbstractComChannel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definicja w linii <a class="el" href="AbstractComChannel_8hh_source.html#l00024">24</a> pliku <a class="el" href="AbstractComChannel_8hh_source.html">AbstractComChannel.hh</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>{}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja funkcji składowych</h2>
+<a id="a2c74268f2b882d5b45dce38426ab1552" name="a2c74268f2b882d5b45dce38426ab1552"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c74268f2b882d5b45dce38426ab1552">&#9670;&#160;</a></span>GetSocket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int AbstractComChannel::GetSocket </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Udostępnia deskryptor skojarzonego z połączeniem sieciowym z serwerem. </p><dl class="section return"><dt>Zwraca</dt><dd>Deskryptor pliku. </dd></dl>
+
+</div>
+</div>
+<a id="a12bc2f47aef4061287452a8ba72b418e" name="a12bc2f47aef4061287452a8ba72b418e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12bc2f47aef4061287452a8ba72b418e">&#9670;&#160;</a></span>Init()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AbstractComChannel::Init </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>Socket</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Inicjalizuje destryptora pliku skojarzonego z połączeniem sieciowym z serwerem. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">Socket</td><td>- zawiera poprawny deskryptor. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="addb98637c15e1c8dc09e9740f8a4a1d3" name="addb98637c15e1c8dc09e9740f8a4a1d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#addb98637c15e1c8dc09e9740f8a4a1d3">&#9670;&#160;</a></span>LockAccess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AbstractComChannel::LockAccess </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef7d3a52c328426a943bb41e4929d5d2" name="aef7d3a52c328426a943bb41e4929d5d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef7d3a52c328426a943bb41e4929d5d2">&#9670;&#160;</a></span>UnlockAccess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AbstractComChannel::UnlockAccess </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8ae9e4989487f6664d46a7ddf702ff55" name="a8ae9e4989487f6664d46a7ddf702ff55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ae9e4989487f6664d46a7ddf702ff55">&#9670;&#160;</a></span>UseGuard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::mutex &amp; AbstractComChannel::UseGuard </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Udostępnia mutex w trybie modyfikacji. Jest to przydatne, gdy planowany jest inny typ zamknięcie, np. poprzez klasę std::lock_gaurd, która daje możliwość bezpieczniejszego zamknięcia. </p>
+
+</div>
+</div>
+<hr/>Dokumentacja dla tej klasy została wygenerowana z pliku:<ul>
+<li><a class="el" href="AbstractComChannel_8hh_source.html">AbstractComChannel.hh</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classAbstractComChannel.html">AbstractComChannel</a></li>
+    <li class="footer">Wygenerowano Pn, 13 paź 2025 18:39:52 dla Interpreter programem <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Interpreter: Dokumentacja klasy AbstractInterp4Command</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Interpreter<span id="projectnumber">&#160;0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano przez Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Szukaj');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classAbstractInterp4Command.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Metody publiczne</a> &#124;
+<a href="classAbstractInterp4Command-members.html">Lista wszystkich składowych</a>  </div>
+  <div class="headertitle"><div class="title">Dokumentacja klasy AbstractInterp4Command<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Definiuje interfejs interpretera polecenia.  
+ <a href="classAbstractInterp4Command.html#details">Więcej...</a></p>
+
+<p><code>#include &lt;<a class="el" href="AbstractInterp4Command_8hh_source.html">AbstractInterp4Command.hh</a>&gt;</code></p>
+<div class="dynheader">
+Diagram dziedziczenia dla AbstractInterp4Command</div>
+<div class="dyncontent">
+<div class="center"><img src="classAbstractInterp4Command__inherit__graph.png" border="0" usemap="#aAbstractInterp4Command_inherit__map" alt="Inheritance graph"/></div>
+<map name="aAbstractInterp4Command_inherit__map" id="aAbstractInterp4Command_inherit__map">
+<area shape="rect" title="Definiuje interfejs interpretera polecenia." alt="" coords="5,5,189,31"/>
+<area shape="rect" href="classInterp4Move.html" title="Modeluje polecenie dla robota mobilnego, które wymusza jego ruch do przodu." alt="" coords="45,79,150,104"/>
+<area shape="poly" title=" " alt="" coords="100,44,100,79,95,79,95,44"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legenda</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Metody publiczne</h2></td></tr>
+<tr class="memitem:a78aba47c737b4cd724be47b26dc60058" id="r_a78aba47c737b4cd724be47b26dc60058"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractInterp4Command.html#a78aba47c737b4cd724be47b26dc60058">~AbstractInterp4Command</a> ()</td></tr>
+<tr class="separator:a78aba47c737b4cd724be47b26dc60058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a386292228025e3bbf7014815ca94cb" id="r_a4a386292228025e3bbf7014815ca94cb"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractInterp4Command.html#a4a386292228025e3bbf7014815ca94cb">PrintCmd</a> () const =0</td></tr>
+<tr class="memdesc:a4a386292228025e3bbf7014815ca94cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyświetla postać bieżącego polecenia (nazwę oraz wartości parametrów)  <br /></td></tr>
+<tr class="separator:a4a386292228025e3bbf7014815ca94cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f43727a1fca67315f771ab0365e2bff" id="r_a5f43727a1fca67315f771ab0365e2bff"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractInterp4Command.html#a5f43727a1fca67315f771ab0365e2bff">PrintSyntax</a> () const =0</td></tr>
+<tr class="memdesc:a5f43727a1fca67315f771ab0365e2bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyświetla składnię polecenia.  <br /></td></tr>
+<tr class="separator:a5f43727a1fca67315f771ab0365e2bff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b5b395f30189177416e66442595d5c8" id="r_a4b5b395f30189177416e66442595d5c8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractInterp4Command.html#a4b5b395f30189177416e66442595d5c8">PrintParams</a> () const =0</td></tr>
+<tr class="memdesc:a4b5b395f30189177416e66442595d5c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wyświetla wartości wczytanych parametrów.  <br /></td></tr>
+<tr class="separator:a4b5b395f30189177416e66442595d5c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13b10657b8d9f2a946c6710d2b673632" id="r_a13b10657b8d9f2a946c6710d2b673632"><td class="memItemLeft" align="right" valign="top">virtual const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractInterp4Command.html#a13b10657b8d9f2a946c6710d2b673632">GetCmdName</a> () const =0</td></tr>
+<tr class="memdesc:a13b10657b8d9f2a946c6710d2b673632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Udostępnia nazwę polecenia.  <br /></td></tr>
+<tr class="separator:a13b10657b8d9f2a946c6710d2b673632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17e609581a2010d8925680aac46a1777" id="r_a17e609581a2010d8925680aac46a1777"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractInterp4Command.html#a17e609581a2010d8925680aac46a1777">ExecCmd</a> (<a class="el" href="classAbstractScene.html">AbstractScene</a> &amp;rScn, const char *sMobObjName, <a class="el" href="classAbstractComChannel.html">AbstractComChannel</a> &amp;rComChann)=0</td></tr>
+<tr class="memdesc:a17e609581a2010d8925680aac46a1777"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wykonuje polecenie oraz wizualizuje jego realizację  <br /></td></tr>
+<tr class="separator:a17e609581a2010d8925680aac46a1777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a658e9a154c9a5ce18607743dca1a1952" id="r_a658e9a154c9a5ce18607743dca1a1952"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAbstractInterp4Command.html#a658e9a154c9a5ce18607743dca1a1952">ReadParams</a> (std::istream &amp;rStrm_CmdsList)=0</td></tr>
+<tr class="memdesc:a658e9a154c9a5ce18607743dca1a1952"><td class="mdescLeft">&#160;</td><td class="mdescRight">Czyta wartości parametrów danego polecenia.  <br /></td></tr>
+<tr class="separator:a658e9a154c9a5ce18607743dca1a1952"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Opis szczegółowy</h2>
+<div class="textblock"><p>Definiuje interfejs interpretera polecenia udostępnianego przez daną wtyczkę. </p>
+
+<p class="definition">Definicja w linii <a class="el" href="AbstractInterp4Command_8hh_source.html#l00023">23</a> pliku <a class="el" href="AbstractInterp4Command_8hh_source.html">AbstractInterp4Command.hh</a>.</p>
+</div><h2 class="groupheader">Dokumentacja konstruktora i destruktora</h2>
+<a id="a78aba47c737b4cd724be47b26dc60058" name="a78aba47c737b4cd724be47b26dc60058"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78aba47c737b4cd724be47b26dc60058">&#9670;&#160;</a></span>~AbstractInterp4Command()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual AbstractInterp4Command::~AbstractInterp4Command </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definicja w linii <a class="el" href="AbstractInterp4Command_8hh_source.html#l00026">26</a> pliku <a class="el" href="AbstractInterp4Command_8hh_source.html">AbstractInterp4Command.hh</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   26</span>{}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Dokumentacja funkcji składowych</h2>
+<a id="a17e609581a2010d8925680aac46a1777" name="a17e609581a2010d8925680aac46a1777"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17e609581a2010d8925680aac46a1777">&#9670;&#160;</a></span>ExecCmd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool AbstractInterp4Command::ExecCmd </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAbstractScene.html">AbstractScene</a> &amp;&#160;</td>
+          <td class="paramname"><em>rScn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>sMobObjName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAbstractComChannel.html">AbstractComChannel</a> &amp;&#160;</td>
+          <td class="paramname"><em>rComChann</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Wykonuje polecenie oraz wizualizuje jego realizację. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">rScn</td><td>- scena zawierającą obiekty mobilne, </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sMobObjName</td><td>- wskaźnik na nazwę lokalizującą i identyfikującą obiekt, </td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">rComChann</td><td>- kanał komunikacyjny z serwerem graficznym. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Zwracane wartości</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- operacja powiodła się, </td></tr>
+    <tr><td class="paramname">false</td><td>- w przypadku przeciwnym. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implementowany w <a class="el" href="classInterp4Move.html#a1628072cee4eeac0815af3fab2b928e4">Interp4Move</a>.</p>
+
+</div>
+</div>
+<a id="a13b10657b8d9f2a946c6710d2b673632" name="a13b10657b8d9f2a946c6710d2b673632"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13b10657b8d9f2a946c6710d2b673632">&#9670;&#160;</a></span>GetCmdName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual const char * AbstractInterp4Command::GetCmdName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementowany w <a class="el" href="classInterp4Move.html#a02b8cb242f0e213d835d62821c4fbc25">Interp4Move</a>.</p>
+
+<p class="reference">Odwołania w <a class="el" href="main_8cpp_source.html#l00009">main()</a>.</p>
+<div class="dynheader">
+Oto graf wywoływań tej funkcji:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAbstractInterp4Command_a13b10657b8d9f2a946c6710d2b673632_icgraph.png" border="0" usemap="#aclassAbstractInterp4Command_a13b10657b8d9f2a946c6710d2b673632_icgraph" alt=""/></div>
+<map name="aclassAbstractInterp4Command_a13b10657b8d9f2a946c6710d2b673632_icgraph" id="aclassAbstractInterp4Command_a13b10657b8d9f2a946c6710d2b673632_icgraph">
+<area shape="rect" title="Udostępnia nazwę polecenia." alt="" coords="105,5,289,45"/>
+<area shape="rect" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,13,57,38"/>
+<area shape="poly" title=" " alt="" coords="92,28,57,28,57,23,92,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4a386292228025e3bbf7014815ca94cb" name="a4a386292228025e3bbf7014815ca94cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a386292228025e3bbf7014815ca94cb">&#9670;&#160;</a></span>PrintCmd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AbstractInterp4Command::PrintCmd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementowany w <a class="el" href="classInterp4Move.html#a9744c7f9d7fe169ce7a7519a9ae6e32b">Interp4Move</a>.</p>
+
+<p class="reference">Odwołania w <a class="el" href="main_8cpp_source.html#l00009">main()</a>.</p>
+<div class="dynheader">
+Oto graf wywoływań tej funkcji:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAbstractInterp4Command_a4a386292228025e3bbf7014815ca94cb_icgraph.png" border="0" usemap="#aclassAbstractInterp4Command_a4a386292228025e3bbf7014815ca94cb_icgraph" alt=""/></div>
+<map name="aclassAbstractInterp4Command_a4a386292228025e3bbf7014815ca94cb_icgraph" id="aclassAbstractInterp4Command_a4a386292228025e3bbf7014815ca94cb_icgraph">
+<area shape="rect" title="Wyświetla postać bieżącego polecenia (nazwę oraz wartości parametrów)" alt="" coords="105,5,289,45"/>
+<area shape="rect" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,13,57,38"/>
+<area shape="poly" title=" " alt="" coords="92,28,57,28,57,23,92,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4b5b395f30189177416e66442595d5c8" name="a4b5b395f30189177416e66442595d5c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b5b395f30189177416e66442595d5c8">&#9670;&#160;</a></span>PrintParams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AbstractInterp4Command::PrintParams </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementowany w <a class="el" href="classInterp4Move.html#a176fb6cc25a2395e4e3d3e08b1674425">Interp4Move</a>.</p>
+
+</div>
+</div>
+<a id="a5f43727a1fca67315f771ab0365e2bff" name="a5f43727a1fca67315f771ab0365e2bff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f43727a1fca67315f771ab0365e2bff">&#9670;&#160;</a></span>PrintSyntax()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AbstractInterp4Command::PrintSyntax </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementowany w <a class="el" href="classInterp4Move.html#a5b4c7ea2f83ab0c286f60986786502bf">Interp4Move</a>.</p>
+
+<p class="reference">Odwołania w <a class="el" href="main_8cpp_source.html#l00009">main()</a>.</p>
+<div class="dynheader">
+Oto graf wywoływań tej funkcji:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAbstractInterp4Command_a5f43727a1fca67315f771ab0365e2bff_icgraph.png" border="0" usemap="#aclassAbstractInterp4Command_a5f43727a1fca67315f771ab0365e2bff_icgraph" alt=""/></div>
+<map name="aclassAbstractInterp4Command_a5f43727a1fca67315f771ab0365e2bff_icgraph" id="aclassAbstractInterp4Command_a5f43727a1fca67315f771ab0365e2bff_icgraph">
+<area shape="rect" title="Wyświetla składnię polecenia." alt="" coords="105,5,289,45"/>
+<area shape="rect" href="main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,13,57,38"/>
+<area shape="poly" title=" " alt="" coords="92,28,57,28,57,23,92,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a658e9a154c9a5ce18607743dca1a1952" name="a658e9a154c9a5ce18607743dca1a1952"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a658e9a154c9a5ce18607743dca1a1952">&#9670;&#160;</a></span>ReadParams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool AbstractInterp4Command::ReadParams </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>rStrm_CmdsList</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Czyta ze strumienia wartości parametrów polecenia. </p><dl class="params"><dt>Parametry</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">rStrm_CmdsList</td><td>- strumień, z którego są czytane parametry polecenia. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Zwracane wartości</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- operacja powiodła się, </td></tr>
+    <tr><td class="paramname">false</td><td>- w przypadku przeciwnym. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implementowany w <a class="el" href="classInterp4Move.html#a2d5f7739d0bd9e224ddf179396ef4e72">Interp4Move</a>.</p>
+
+</div>
+</div>
+<hr/>Dokumentacja dla tej klasy została wygenerowana z pliku:<ul>
+<li><a class="el" href="AbstractInterp4Command_8hh_source.html">AbstractInterp4Command.hh</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classAbstractInterp4Command.html">AbstractInterp4Command</a></li>
+    <li class="footer">Wygenerowano Pn, 13 paź 2025 18:39:53 dla Interpreter programem <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

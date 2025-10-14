@@ -1,0 +1,343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Interpreter: Plik źródłowy geomVector.hh</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Interpreter<span id="projectnumber">&#160;0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Wygenerowano przez Doxygen 1.9.8 -->
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',false,false,'search.php','Szukaj');
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function() { init_codefold(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('geomVector_8hh_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<div class="header">
+  <div class="headertitle"><div class="title">geomVector.hh</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="geomVector_8hh.html">Idź do dokumentacji tego pliku.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef GEOMVECTOR_HH</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define GEOMVECTOR_HH</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifdef __GNUG__</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#pragma interface</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;cassert&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="namespacegeom.html">   29</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacegeom.html">geom</a> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="geomVector_8hh.html#af79c4363ad2fbd5349660d1d45a27965">   37</a></span><span class="preprocessor">#define ERR_DOUBLE   1e-9</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="keyword">inline</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="namespacegeom.html#ae7cf32f8462c8e56413fe6564b18cebe">   53</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="namespacegeom.html#ae7cf32f8462c8e56413fe6564b18cebe">Sgn</a>(<span class="keywordtype">double</span> Val) { <span class="keywordflow">return</span> Val &gt; <a class="code hl_define" href="geomVector_8hh.html#af79c4363ad2fbd5349660d1d45a27965">ERR_DOUBLE</a> ? 1 : Val &lt; -<a class="code hl_define" href="geomVector_8hh.html#af79c4363ad2fbd5349660d1d45a27965">ERR_DOUBLE</a> ? -1 : 0; }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html">   63</a></span> <span class="keyword">class </span><a class="code hl_class" href="classgeom_1_1Vector.html">Vector</a> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">   70</a></span>   Type  <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a>[Size];</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">   79</a></span>   <a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Vector</a>() { <span class="keywordflow">for</span> (Type &amp;Val : <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a>) Val = 0; }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#a167695979e117f7b78ac8bd16f406c18">   90</a></span>   Type  &amp;<a class="code hl_function" href="classgeom_1_1Vector.html#a167695979e117f7b78ac8bd16f406c18">operator []</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Ind) { assert(Ind &lt; Size); <span class="keywordflow">return</span> <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a>[Ind]; }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#a002f821634064106442c03165cc17360">  101</a></span>   Type <a class="code hl_function" href="classgeom_1_1Vector.html#a167695979e117f7b78ac8bd16f406c18">operator []</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Ind)<span class="keyword"> const </span>{ assert(Ind &lt; Size); <span class="keywordflow">return</span> <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a>[Ind]; }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a>  <a class="code hl_function" href="classgeom_1_1Vector.html#ab3ba3eea9ce5b60c0bdaa6cd0062a2e0">operator  + </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <span class="keyword">const</span> &amp;rSkl2) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> &amp;<a class="code hl_function" href="classgeom_1_1Vector.html#a2eb537bd0153ac0898a47dc10b0512a1">operator += </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <span class="keyword">const</span> &amp;rSkl2);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>   <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a>  <a class="code hl_function" href="classgeom_1_1Vector.html#ad26800e2f6dd4d02a6a5c04d9993c41e">operator  - </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <span class="keyword">const</span> &amp;rOdj) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>   <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> &amp;<a class="code hl_function" href="classgeom_1_1Vector.html#ade22504afc1efd37089d2921edf8d036">operator -= </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <span class="keyword">const</span> &amp;rOdj);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>   <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a>  <a class="code hl_function" href="classgeom_1_1Vector.html#a6177b4b7c264345057bc97fe59f24e1b">operator  * </a>(Type Mnoznik) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>   <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> &amp;<a class="code hl_function" href="classgeom_1_1Vector.html#a22e2b0ee867b24e5c28986c450dfa015">operator *= </a>(Type Mnoznik);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>   <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a>  <a class="code hl_function" href="classgeom_1_1Vector.html#a1c9f0be69f15611dc2eb5afc18afdcde">operator  / </a>(Type Dzielnik) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>   <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> &amp;<a class="code hl_function" href="classgeom_1_1Vector.html#a2036ad643efa0a17f8f1e242b9f30c96">operator /= </a>(Type Dzielnik);</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>   Type  <a class="code hl_function" href="classgeom_1_1Vector.html#a08452caf47e8e7a328f9c86359d51dab">operator &amp; </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <span class="keyword">const</span> &amp;rVec) <span class="keyword">const</span>;      <span class="comment">// skalar product</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>   <span class="keywordtype">bool</span>          <a class="code hl_function" href="classgeom_1_1Vector.html#af40279932a4f4081f432c7e9866f6279">operator == </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <span class="keyword">const</span> &amp;rArg2);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>    Type <a class="code hl_function" href="classgeom_1_1Vector.html#abc4ad52f3fe464ae0aa8c06830e095f0">Length</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#a1eed369390ca9294054ed50f8bb58f71">  233</a></span>    <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> &amp;<a class="code hl_function" href="classgeom_1_1Vector.html#a1eed369390ca9294054ed50f8bb58f71">Inverse</a>() { <span class="keywordflow">for</span> (Type &amp;Crd : <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a> ) Crd = -Crd; <span class="keywordflow">return</span> *<span class="keyword">this</span>; }</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span> </div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#ae9fa881108bde822e379b31b258bc0b9">  242</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classgeom_1_1Vector.html#ae9fa881108bde822e379b31b258bc0b9">SetZero</a>() { <span class="keywordflow">for</span> (Type &amp;Crd : <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a> ) Crd = 0;  }</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#a99c14f66532391bcd489100baf806377">  255</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeom_1_1Vector.html#a99c14f66532391bcd489100baf806377">IsZero</a>()<span class="keyword"> const  </span>{ <span class="keywordflow">for</span> (Type Crd : <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a> ) <span class="keywordflow">if</span> (Crd) <span class="keywordflow">return</span> <span class="keyword">false</span>;  <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="foldopen" id="foldopen00269" data-start="{" data-end="}">
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#ab61e8a0071fce9a35785033c48c7f256">  269</a></span>   <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeom_1_1Vector.html#ab61e8a0071fce9a35785033c48c7f256">IsInside</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Ind, Type x_min, Type x_max)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span><span class="keyword">     </span>{ <span class="keywordflow">return</span> (x_min &lt; <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a>[Ind]) &amp;&amp; (<a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a>[Ind] &lt; x_max);}</div>
+</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>   <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeom_1_1Vector.html#ab61e8a0071fce9a35785033c48c7f256">IsInside</a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <span class="keyword">const</span> &amp;Min, <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> Max) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
+<div class="foldopen" id="foldopen00299" data-start="{" data-end="}">
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#ae6cf2d9425868ac7d3d2246321b88a24">  299</a></span>   <span class="keywordtype">void</span> <a class="code hl_function" href="classgeom_1_1Vector.html#ae6cf2d9425868ac7d3d2246321b88a24">Normalize</a>() </div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>     { Type d = <a class="code hl_function" href="classgeom_1_1Vector.html#abc4ad52f3fe464ae0aa8c06830e095f0">Length</a>(); <span class="keywordflow">for</span> (Type &amp;Crd : <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a>) Crd /= d; }</div>
+</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> };</div>
+</div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span> </div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> <span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00306" data-start="{" data-end="}">
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#ad2af53f7e49ccce56e09969724a4f2ff">  306</a></span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeom_1_1Vector.html#ab61e8a0071fce9a35785033c48c7f256">Vector&lt;Type,Size&gt;::IsInside</a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <span class="keyword">const</span> &amp;Min, <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> Max)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="keyword"> </span>{</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> Ind = 0; Ind &lt; Size; ++Ind) {</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>     <span class="keywordflow">if</span> (!IsInside(Ind,Min[Ind],Max[Ind])) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>   }</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>   <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> }</div>
+</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span> <span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00318" data-start="{" data-end="}">
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#abc4ad52f3fe464ae0aa8c06830e095f0">  318</a></span> Type <a class="code hl_function" href="classgeom_1_1Vector.html#abc4ad52f3fe464ae0aa8c06830e095f0">Vector&lt;Type,Size&gt;::Length</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="keyword"> </span>{</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>   <span class="keywordflow">return</span> sqrt(*<span class="keyword">this</span> &amp; *<span class="keyword">this</span>);</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> }</div>
+</div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> <span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00326" data-start="{" data-end="}">
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#a2eb537bd0153ac0898a47dc10b0512a1">  326</a></span> <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> &amp;<a class="code hl_function" href="classgeom_1_1Vector.html#a2eb537bd0153ac0898a47dc10b0512a1">Vector&lt;Type,Size&gt;::operator += </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <span class="keyword">const</span> &amp;rSkl2)</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span> {</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Ind = 0; Ind &lt; Size; ++Ind) _Coord[Ind] += rSkl2[Ind];</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>   <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> }</div>
+</div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>  </div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> <span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00335" data-start="{" data-end="}">
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#ab3ba3eea9ce5b60c0bdaa6cd0062a2e0">  335</a></span> <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <a class="code hl_function" href="classgeom_1_1Vector.html#ab3ba3eea9ce5b60c0bdaa6cd0062a2e0">Vector&lt;Type,Size&gt;::operator + </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector</a> <span class="keyword">const</span> &amp;rSkl2)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span><span class="keyword"> </span>{</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>   <span class="keywordflow">return</span> <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a>(*<span class="keyword">this</span>) += <a class="code hl_class" href="classgeom_1_1Vector.html">rSkl2</a>;</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span> }</div>
+</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span> </div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> <span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00343" data-start="{" data-end="}">
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#ade22504afc1efd37089d2921edf8d036">  343</a></span> <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> &amp;<a class="code hl_function" href="classgeom_1_1Vector.html#ade22504afc1efd37089d2921edf8d036">Vector&lt;Type,Size&gt;::operator -= </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <span class="keyword">const</span> &amp; <a class="code hl_class" href="classgeom_1_1Vector.html">rOdj</a>)</div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> {</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_class" href="classgeom_1_1Vector.html">Ind</a> = 0; <a class="code hl_class" href="classgeom_1_1Vector.html">Ind</a> &lt; <a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Size</a>; ++<a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Ind</a>) <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a>[<a class="code hl_class" href="classgeom_1_1Vector.html">Ind</a>] -= <a class="code hl_class" href="classgeom_1_1Vector.html">rOdj</a>[<a class="code hl_class" href="classgeom_1_1Vector.html">Ind</a>];</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>   <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span> }</div>
+</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span> <span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00352" data-start="{" data-end="}">
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#ad26800e2f6dd4d02a6a5c04d9993c41e">  352</a></span> <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <a class="code hl_function" href="classgeom_1_1Vector.html#ad26800e2f6dd4d02a6a5c04d9993c41e">Vector&lt;Type,Size&gt;::operator - </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a>  <span class="keyword">const</span> &amp;<a class="code hl_class" href="classgeom_1_1Vector.html">rOdj</a>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span><span class="keyword"> </span>{</div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>   <span class="keywordflow">return</span> <a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Vector&lt;Type,Size&gt;</a>(*<span class="keyword">this</span>) -= <a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">rOdj</a>;</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> }</div>
+</div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> <span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00360" data-start="{" data-end="}">
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#a22e2b0ee867b24e5c28986c450dfa015">  360</a></span> <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> &amp;<a class="code hl_function" href="classgeom_1_1Vector.html#a22e2b0ee867b24e5c28986c450dfa015">Vector&lt;Type,Size&gt;::operator *= </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Type</a> <a class="code hl_class" href="classgeom_1_1Vector.html">Mnoznik</a>)</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> {</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>   <span class="keywordflow">for</span> (<a class="code hl_class" href="classgeom_1_1Vector.html">Type</a> <a class="code hl_class" href="classgeom_1_1Vector.html">Crd</a> : <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a> ) <a class="code hl_class" href="classgeom_1_1Vector.html">Crd</a> *= <a class="code hl_class" href="classgeom_1_1Vector.html">Mnoznik</a>;</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>   <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> }</div>
+</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span> </div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span> <span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00369" data-start="{" data-end="}">
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#a6177b4b7c264345057bc97fe59f24e1b">  369</a></span> <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <a class="code hl_function" href="classgeom_1_1Vector.html#a6177b4b7c264345057bc97fe59f24e1b">Vector&lt;Type,Size&gt;::operator * </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Type</a> <a class="code hl_class" href="classgeom_1_1Vector.html">Mnoznik</a>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span><span class="keyword"> </span>{</div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span>   <span class="keywordflow">return</span> <a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Vector&lt;Type,Size&gt;</a>(*<span class="keyword">this</span>) *= <a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Mnoznik</a>;  </div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span> }</div>
+</div>
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span> </div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span> </div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span> </div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span> <span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00378" data-start="{" data-end="}">
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#a2036ad643efa0a17f8f1e242b9f30c96">  378</a></span> <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> &amp;<a class="code hl_function" href="classgeom_1_1Vector.html#a2036ad643efa0a17f8f1e242b9f30c96">Vector&lt;Type,Size&gt;::operator /= </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Type</a> <a class="code hl_class" href="classgeom_1_1Vector.html">Digit</a>)</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span> {</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>   <span class="keywordflow">for</span> (<a class="code hl_class" href="classgeom_1_1Vector.html">Type</a> <a class="code hl_class" href="classgeom_1_1Vector.html">Crd</a> : <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a> ) <a class="code hl_class" href="classgeom_1_1Vector.html">Crd</a> /= <a class="code hl_class" href="classgeom_1_1Vector.html">Digit</a>;</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>   <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span> }</div>
+</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>  </div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span> </div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span> <span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00387" data-start="{" data-end="}">
+<div class="line"><a id="l00387" name="l00387"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#a1c9f0be69f15611dc2eb5afc18afdcde">  387</a></span> <a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <a class="code hl_function" href="classgeom_1_1Vector.html#a1c9f0be69f15611dc2eb5afc18afdcde">Vector&lt;Type,Size&gt;::operator / </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Type</a> <a class="code hl_class" href="classgeom_1_1Vector.html">Dzielnik</a>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00388" name="l00388"></a><span class="lineno">  388</span><span class="keyword"> </span>{</div>
+<div class="line"><a id="l00389" name="l00389"></a><span class="lineno">  389</span>   <span class="keywordflow">return</span> <a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Vector&lt;Type,Size&gt;</a>(*<span class="keyword">this</span>) /= <a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Dzielnik</a>;    </div>
+<div class="line"><a id="l00390" name="l00390"></a><span class="lineno">  390</span> }</div>
+</div>
+<div class="line"><a id="l00391" name="l00391"></a><span class="lineno">  391</span> </div>
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno">  392</span> </div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span> <span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00395" data-start="{" data-end="}">
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#af40279932a4f4081f432c7e9866f6279">  395</a></span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classgeom_1_1Vector.html#af40279932a4f4081f432c7e9866f6279">Vector&lt;Type,Size&gt;::operator == </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <span class="keyword">const</span> &amp;<a class="code hl_class" href="classgeom_1_1Vector.html">rArg2</a>)</div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span> {</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_class" href="classgeom_1_1Vector.html">Idx</a> = 0; <a class="code hl_class" href="classgeom_1_1Vector.html">Idx</a> &lt; <a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Size</a>; ++<a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Idx</a>)</div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>             <span class="keywordflow">if</span> (<a class="code hl_function" href="namespacegeom.html#ae7cf32f8462c8e56413fe6564b18cebe">Sgn</a>(<a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a>[<a class="code hl_class" href="classgeom_1_1Vector.html">Idx</a>]-<a class="code hl_class" href="classgeom_1_1Vector.html">rArg2</a>[<a class="code hl_class" href="classgeom_1_1Vector.html">Idx</a>]) != 0) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>   <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span> }</div>
+</div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span> </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span> </div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span> <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span> <span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00405" data-start="{" data-end="}">
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno"><a class="line" href="classgeom_1_1Vector.html#a08452caf47e8e7a328f9c86359d51dab">  405</a></span> <a class="code hl_class" href="classgeom_1_1Vector.html">Type</a> <a class="code hl_function" href="classgeom_1_1Vector.html#a08452caf47e8e7a328f9c86359d51dab">Vector&lt;Type,Size&gt;::operator &amp; </a>(<a class="code hl_class" href="classgeom_1_1Vector.html">Vector&lt;Type,Size&gt;</a> <span class="keyword">const</span> &amp;<a class="code hl_class" href="classgeom_1_1Vector.html">rVec</a>)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span><span class="keyword"> </span>{</div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>   <a class="code hl_class" href="classgeom_1_1Vector.html">Type</a> <a class="code hl_class" href="classgeom_1_1Vector.html">Res</a> = 0;</div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span>   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code hl_class" href="classgeom_1_1Vector.html">Idx</a> = 0; <a class="code hl_class" href="classgeom_1_1Vector.html">Idx</a> &lt; <a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Size</a>; ++<a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Idx</a>) <a class="code hl_class" href="classgeom_1_1Vector.html">Res</a> += <a class="code hl_variable" href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">_Coord</a>[<a class="code hl_class" href="classgeom_1_1Vector.html">Idx</a>] * <a class="code hl_class" href="classgeom_1_1Vector.html">rVec</a>[<a class="code hl_class" href="classgeom_1_1Vector.html">Idx</a>];  </div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>   <span class="keywordflow">return</span> <a class="code hl_function" href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">Res</a>;</div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span> }</div>
+</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span> </div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>}</div>
+</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span> </div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span> </div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Type, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Size&gt;</div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span><span class="keyword">inline</span></div>
+<div class="foldopen" id="foldopen00425" data-start="{" data-end="}">
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno"><a class="line" href="geomVector_8hh.html#a08323be08e460c654c9ec9b81a82a2f5">  425</a></span>std::ostream &amp; <a class="code hl_function" href="geomVector_8hh.html#a08323be08e460c654c9ec9b81a82a2f5">operator &lt;&lt; </a>( std::ostream &amp;OStrm, <span class="keyword">const</span> <a class="code hl_class" href="classgeom_1_1Vector.html">geom::Vector&lt;Type,Size&gt;</a> &amp;V)</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>{</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>  OStrm &lt;&lt; <span class="stringliteral">&quot;(&quot;</span> &lt;&lt; V[0];</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>   <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Ind = 1; Ind &lt; Size; ++Ind) {</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>     OStrm &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; V[Ind];</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span>   }</div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>   OStrm &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span>   <span class="keywordflow">return</span> OStrm;</div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span>}</div>
+</div>
+<div class="line"><a id="l00434" name="l00434"></a><span class="lineno">  434</span> </div>
+<div class="line"><a id="l00435" name="l00435"></a><span class="lineno">  435</span> </div>
+<div class="line"><a id="l00436" name="l00436"></a><span class="lineno">  436</span> </div>
+<div class="line"><a id="l00437" name="l00437"></a><span class="lineno">  437</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html"><div class="ttname"><a href="classgeom_1_1Vector.html">geom::Vector</a></div><div class="ttdoc">Model wektora N-wymiarowego.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00063">geomVector.hh:63</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_a08452caf47e8e7a328f9c86359d51dab"><div class="ttname"><a href="classgeom_1_1Vector.html#a08452caf47e8e7a328f9c86359d51dab">geom::Vector::operator&amp;</a></div><div class="ttdeci">Type operator&amp;(Vector&lt; Type, Size &gt; const &amp;rVec) const</div><div class="ttdoc">Iloczyn skalarny.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00405">geomVector.hh:405</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_a0fee22e1ce1a1b55d7ed57ca28ca2a23"><div class="ttname"><a href="classgeom_1_1Vector.html#a0fee22e1ce1a1b55d7ed57ca28ca2a23">geom::Vector::_Coord</a></div><div class="ttdeci">Type _Coord[Size]</div><div class="ttdoc">Tablica współrzędnych wektora.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00070">geomVector.hh:70</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_a167695979e117f7b78ac8bd16f406c18"><div class="ttname"><a href="classgeom_1_1Vector.html#a167695979e117f7b78ac8bd16f406c18">geom::Vector::operator[]</a></div><div class="ttdeci">Type &amp; operator[](unsigned int Ind)</div><div class="ttdoc">Dostęp do wybranej składowej wektora.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00090">geomVector.hh:90</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_a1c9f0be69f15611dc2eb5afc18afdcde"><div class="ttname"><a href="classgeom_1_1Vector.html#a1c9f0be69f15611dc2eb5afc18afdcde">geom::Vector::operator/</a></div><div class="ttdeci">Vector&lt; Type, Size &gt; operator/(Type Dzielnik) const</div><div class="ttdoc">Dzielenie wektora przez liczbę</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00387">geomVector.hh:387</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_a1eed369390ca9294054ed50f8bb58f71"><div class="ttname"><a href="classgeom_1_1Vector.html#a1eed369390ca9294054ed50f8bb58f71">geom::Vector::Inverse</a></div><div class="ttdeci">Vector&lt; Type, Size &gt; &amp; Inverse()</div><div class="ttdoc">Zmienia znak wszystkich składowych.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00233">geomVector.hh:233</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_a2036ad643efa0a17f8f1e242b9f30c96"><div class="ttname"><a href="classgeom_1_1Vector.html#a2036ad643efa0a17f8f1e242b9f30c96">geom::Vector::operator/=</a></div><div class="ttdeci">Vector&lt; Type, Size &gt; &amp; operator/=(Type Dzielnik)</div><div class="ttdoc">Dzielenie wektora przez liczbę i przypisanie wyniku.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00378">geomVector.hh:378</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_a22e2b0ee867b24e5c28986c450dfa015"><div class="ttname"><a href="classgeom_1_1Vector.html#a22e2b0ee867b24e5c28986c450dfa015">geom::Vector::operator*=</a></div><div class="ttdeci">Vector&lt; Type, Size &gt; &amp; operator*=(Type Mnoznik)</div><div class="ttdoc">Mnożenie wektora przez liczbę i przypisanie wyniku.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00360">geomVector.hh:360</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_a2eb537bd0153ac0898a47dc10b0512a1"><div class="ttname"><a href="classgeom_1_1Vector.html#a2eb537bd0153ac0898a47dc10b0512a1">geom::Vector::operator+=</a></div><div class="ttdeci">Vector&lt; Type, Size &gt; &amp; operator+=(Vector&lt; Type, Size &gt; const &amp;rSkl2)</div><div class="ttdoc">Dodaje wektora i przypisuje wynik sumy.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00326">geomVector.hh:326</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_a5db61ab466bfbf56c4d8890873ded8d1"><div class="ttname"><a href="classgeom_1_1Vector.html#a5db61ab466bfbf56c4d8890873ded8d1">geom::Vector::Vector</a></div><div class="ttdeci">Vector()</div><div class="ttdoc">Współrzędne wektora są zerowane.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00079">geomVector.hh:79</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_a6177b4b7c264345057bc97fe59f24e1b"><div class="ttname"><a href="classgeom_1_1Vector.html#a6177b4b7c264345057bc97fe59f24e1b">geom::Vector::operator*</a></div><div class="ttdeci">Vector&lt; Type, Size &gt; operator*(Type Mnoznik) const</div><div class="ttdoc">Mnożenie wektora przez liczbę</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00369">geomVector.hh:369</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_a99c14f66532391bcd489100baf806377"><div class="ttname"><a href="classgeom_1_1Vector.html#a99c14f66532391bcd489100baf806377">geom::Vector::IsZero</a></div><div class="ttdeci">bool IsZero() const</div><div class="ttdoc">Sprawdza czy wektor jest wektorem zerowym.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00255">geomVector.hh:255</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_ab3ba3eea9ce5b60c0bdaa6cd0062a2e0"><div class="ttname"><a href="classgeom_1_1Vector.html#ab3ba3eea9ce5b60c0bdaa6cd0062a2e0">geom::Vector::operator+</a></div><div class="ttdeci">Vector&lt; Type, Size &gt; operator+(Vector&lt; Type, Size &gt; const &amp;rSkl2) const</div><div class="ttdoc">Dostęp do wybranej składowej wektora.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00335">geomVector.hh:335</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_ab61e8a0071fce9a35785033c48c7f256"><div class="ttname"><a href="classgeom_1_1Vector.html#ab61e8a0071fce9a35785033c48c7f256">geom::Vector::IsInside</a></div><div class="ttdeci">bool IsInside(unsigned int Ind, Type x_min, Type x_max) const</div><div class="ttdoc">Sprawdza czy zadana współrzędna znajduje się wewnątrz danego przedziału.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00269">geomVector.hh:269</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_abc4ad52f3fe464ae0aa8c06830e095f0"><div class="ttname"><a href="classgeom_1_1Vector.html#abc4ad52f3fe464ae0aa8c06830e095f0">geom::Vector::Length</a></div><div class="ttdeci">Type Length() const</div><div class="ttdoc">Length of this vector is computed.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00318">geomVector.hh:318</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_ad26800e2f6dd4d02a6a5c04d9993c41e"><div class="ttname"><a href="classgeom_1_1Vector.html#ad26800e2f6dd4d02a6a5c04d9993c41e">geom::Vector::operator-</a></div><div class="ttdeci">Vector&lt; Type, Size &gt; operator-(Vector&lt; Type, Size &gt; const &amp;rOdj) const</div><div class="ttdoc">Różnica dwóch wektorów.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00352">geomVector.hh:352</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_ade22504afc1efd37089d2921edf8d036"><div class="ttname"><a href="classgeom_1_1Vector.html#ade22504afc1efd37089d2921edf8d036">geom::Vector::operator-=</a></div><div class="ttdeci">Vector&lt; Type, Size &gt; &amp; operator-=(Vector&lt; Type, Size &gt; const &amp;rOdj)</div><div class="ttdoc">Różnica dwóch wektorów i przypisanie wyniku.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00343">geomVector.hh:343</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_ae6cf2d9425868ac7d3d2246321b88a24"><div class="ttname"><a href="classgeom_1_1Vector.html#ae6cf2d9425868ac7d3d2246321b88a24">geom::Vector::Normalize</a></div><div class="ttdeci">void Normalize()</div><div class="ttdoc">Normalizuje wektor.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00299">geomVector.hh:299</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_ae9fa881108bde822e379b31b258bc0b9"><div class="ttname"><a href="classgeom_1_1Vector.html#ae9fa881108bde822e379b31b258bc0b9">geom::Vector::SetZero</a></div><div class="ttdeci">void SetZero()</div><div class="ttdoc">Zeruje wszystkie współrzędne wektora.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00242">geomVector.hh:242</a></div></div>
+<div class="ttc" id="aclassgeom_1_1Vector_html_af40279932a4f4081f432c7e9866f6279"><div class="ttname"><a href="classgeom_1_1Vector.html#af40279932a4f4081f432c7e9866f6279">geom::Vector::operator==</a></div><div class="ttdeci">bool operator==(Vector&lt; Type, Size &gt; const &amp;rArg2)</div><div class="ttdoc">Porównanie dwóch wektorów.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00395">geomVector.hh:395</a></div></div>
+<div class="ttc" id="ageomVector_8hh_html_a08323be08e460c654c9ec9b81a82a2f5"><div class="ttname"><a href="geomVector_8hh.html#a08323be08e460c654c9ec9b81a82a2f5">operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(std::ostream &amp;OStrm, const geom::Vector&lt; Type, Size &gt; &amp;V)</div><div class="ttdoc">Wypisuje współrzędne wektora do tekstowego strumienia wyjściowego.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00425">geomVector.hh:425</a></div></div>
+<div class="ttc" id="ageomVector_8hh_html_af79c4363ad2fbd5349660d1d45a27965"><div class="ttname"><a href="geomVector_8hh.html#af79c4363ad2fbd5349660d1d45a27965">ERR_DOUBLE</a></div><div class="ttdeci">#define ERR_DOUBLE</div><div class="ttdoc">Przyjęta wartość błędu obliczeń.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00037">geomVector.hh:37</a></div></div>
+<div class="ttc" id="anamespacegeom_html"><div class="ttname"><a href="namespacegeom.html">geom</a></div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00029">geomVector.hh:29</a></div></div>
+<div class="ttc" id="anamespacegeom_html_ae7cf32f8462c8e56413fe6564b18cebe"><div class="ttname"><a href="namespacegeom.html#ae7cf32f8462c8e56413fe6564b18cebe">geom::Sgn</a></div><div class="ttdeci">int Sgn(double Val)</div><div class="ttdoc">Sprawdza znak wartości uwzględniając błąd obliczeń.</div><div class="ttdef"><b>Definition</b> <a href="geomVector_8hh_source.html#l00053">geomVector.hh:53</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li><li class="navelem"><a class="el" href="geomVector_8hh.html">geomVector.hh</a></li>
+    <li class="footer">Wygenerowano Pn, 13 paź 2025 18:39:52 dla Interpreter programem <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<map id="main" name="main">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,77,57,102"/>
+<area shape="rect" id="Node000002" href="$classAbstractInterp4Command.html#a13b10657b8d9f2a946c6710d2b673632" title="Udostępnia nazwę polecenia." alt="" coords="105,5,289,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,75,104,55,124,47,126,52,106,60,58,80"/>
+<area shape="rect" id="Node000003" href="$classAbstractInterp4Command.html#a4a386292228025e3bbf7014815ca94cb" title="Wyświetla postać bieżącego polecenia (nazwę oraz wartości parametrów)" alt="" coords="105,69,289,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="57,87,92,87,92,92,57,92"/>
+<area shape="rect" id="Node000004" href="$classAbstractInterp4Command.html#a5f43727a1fca67315f771ab0365e2bff" title="Wyświetla składnię polecenia." alt="" coords="105,133,289,173"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="58,98,106,119,126,126,124,131,104,124,56,103"/>
+</map>

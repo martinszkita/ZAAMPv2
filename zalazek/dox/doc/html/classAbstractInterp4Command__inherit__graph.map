@@ -1,0 +1,5 @@
+<map id="AbstractInterp4Command" name="AbstractInterp4Command">
+<area shape="rect" id="Node000001" title="Definiuje interfejs interpretera polecenia." alt="" coords="5,5,189,31"/>
+<area shape="rect" id="Node000002" href="$classInterp4Move.html" title="Modeluje polecenie dla robota mobilnego, które wymusza jego ruch do przodu." alt="" coords="45,79,150,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,44,100,79,95,79,95,44"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="geom::Sgn" name="geom::Sgn">
+<area shape="rect" id="Node000001" title="Sprawdza znak wartości uwzględniając błąd obliczeń." alt="" coords="240,5,329,31"/>
+<area shape="rect" id="Node000002" href="$classgeom_1_1Vector.html#af40279932a4f4081f432c7e9866f6279" title="Porównanie dwóch wektorów." alt="" coords="5,5,192,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,21,192,21,192,15,227,15"/>
+</map>

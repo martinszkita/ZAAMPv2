@@ -1,0 +1,91 @@
+#include "Interp4Set.hh"
+#include <cmath>
+#include <iostream>
+
+extern "C" {
+  AbstractInterp4Command* CreateCmd(void);
+  const char* Interp4Set::GetCmdName() const { return "Set"; }
+}
+
+AbstractInterp4Command* CreateCmd(void){
+    return Interp4Set::CreateCmd();
+}
+
+AbstractInterp4Command* Interp4Set::CreateCmd()
+{
+  return new Interp4Set();
+}
+
+
+Interp4Set::Interp4Set(): pos(Vector3D()), rpy(Vector3D()) {}
+
+const std::string& Interp4Set::GetRobotName() const {
+    return _robotName;
+}
+
+const Vector3D& Interp4Set::GetPosition() const {
+    return pos;
+}
+
+const Vector3D& Interp4Set::GetRPY() const {
+    return rpy;
+}
+
+void Interp4Set::SetRobotName(const std::string& name) {
+    _robotName = name;
+}
+
+void Interp4Set::SetPosition(const Vector3D& position) {
+    pos = position;
+}
+
+void Interp4Set::SetRPY(const Vector3D& _RPY) {
+    rpy = _RPY;
+}
+
+
+
+void Interp4Set::PrintCmd() const {
+    std::cout << "Obecne polecenie: Set " <<std::endl;
+    std::cout << GetCmdName() << " " << _robotName << " "
+              << GetPosition()[0] << " " << GetPosition()[1] << " " << GetPosition()[2] << " "
+              << GetRPY()[0] << " " << GetRPY()[1] << " " << GetRPY()[2] << " \n";
+}
+
+bool Interp4Set::ExecCmd( AbstractScene &rScn, const char * sMobObjName,AbstractComChannel &rComChann)  {
+    AbstractMobileObj * pObj = rScn.FindMobileObj(sMobObjName);
+
+  if (pObj == nullptr){
+    std::cerr << GetCmdName() <<"  -- nie znaleziono obiektu o nazwie: "<< sMobObjName << std::endl;
+    return false;
+  }
+
+  pObj->SetPosition_m(pos);
+  pObj->SetAng_Roll_deg(rpy[0]);
+  pObj->SetAng_Pitch_deg(rpy[1]);
+  pObj->SetAng_Yaw_deg(rpy[2]);
+
+  return true;
+}
+
+bool Interp4Set::ReadParams(std::istream& strm) {
+    strm >> _robotName >> pos[0] >> pos[1] >> pos[2] >> rpy[0] >> rpy[1] >> rpy[2];
+    return !strm.fail();
+}
+
+void Interp4Set::PrintSyntax() const{
+    std::cout << "Set Command Syntax:" << std::endl;
+    std::cout << "Set nazwa_obiektu wsp_x wsp_y wsp_z kat_OX kat_OY kat_OZ" << std::endl;
+}
+void Interp4Set::PrintParams() const{
+    std::cout << "Set Command Params:" << std::endl;
+    std::cout << "nazwa_obiektu: " << GetRobotName() << std::endl;
+    std::cout << "wsp_x: " << GetPosition()[0] << std::endl;
+    std::cout << "wso_y: " << GetPosition()[1] << std::endl;
+    std::cout << "wsp_z: " << GetPosition()[2] << std::endl;
+    std::cout << "kat_OX: " << GetPosition()[0] << std::endl;
+    std::cout << "kat_OY: " << GetPosition()[1] << std::endl;
+    std::cout << "kat_OZ: " << GetPosition()[2] << std::endl;
+}
+
+
