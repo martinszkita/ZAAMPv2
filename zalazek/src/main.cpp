@@ -5,25 +5,35 @@
 
 using namespace std;
 
-int main()
+int main(int argc, char **argv)
 {
-  void *pLibHnd_Move = dlopen("libInterp4Move.so",RTLD_LAZY);
+  // sprawdzenie czy liczba parametrów jest poprawna
+  if (argc != 3)
+  {
+    cerr << "Usage: " << argv[0] << " <config_file.xml> <instructions_file.xml>" << endl;
+    return 1;
+  }
+
+    const char *configFileName = argv[1];
+    const char *instructionFile = argv[2];
+  /* *************************************** */
+  void *pLibHnd_Move = dlopen("libInterp4Move.so", RTLD_LAZY);
   AbstractInterp4Command *(*pCreateCmd_Move)(void);
   void *pFun;
 
-  if (!pLibHnd_Move) {
+  if (!pLibHnd_Move)
+  {
     cerr << "!!! Brak biblioteki: Interp4Move.so" << endl;
     return 1;
   }
 
-
-  pFun = dlsym(pLibHnd_Move,"CreateCmd");
-  if (!pFun) {
+  pFun = dlsym(pLibHnd_Move, "CreateCmd");
+  if (!pFun)
+  {
     cerr << "!!! Nie znaleziono funkcji CreateCmd" << endl;
     return 1;
   }
-  pCreateCmd_Move = reinterpret_cast<AbstractInterp4Command* (*)(void)>(pFun);
-
+  pCreateCmd_Move = reinterpret_cast<AbstractInterp4Command *(*)(void)>(pFun);
 
   AbstractInterp4Command *pCmd = pCreateCmd_Move();
 
@@ -34,7 +44,7 @@ int main()
   cout << endl;
   pCmd->PrintCmd();
   cout << endl;
-  
+
   delete pCmd;
 
   dlclose(pLibHnd_Move);

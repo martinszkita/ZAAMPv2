@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Interp4Move.hh"
 
+#define DEG_TO_RAD(deg) 180 / M_PI
+
 using std::cout;
 using std::endl;
 
@@ -15,7 +17,7 @@ AbstractInterp4Command *CreateCmd(void)
   return Interp4Move::CreateCmd();
 }
 
-Interp4Move::Interp4Move() : _Speed_mmS(0), _Distance_mm(0)
+Interp4Move::Interp4Move() : _Speed_mS(0), _Distance_m(0)
 {
 }
 
@@ -31,24 +33,24 @@ std::string Interp4Move::getRobotName() const
 
 void Interp4Move::setSpeed(const double _speed)
 {
-  _Speed_mmS = _speed;
+  _Speed_mS = _speed;
 }
 void Interp4Move::setDistance(const double _distance)
 {
-  _Distance_mm = _distance;
+  _Distance_m = _distance;
 }
 const double &Interp4Move::getSpeed() const
 {
-  return _Speed_mmS;
+  return _Speed_mS;
 }
 const double &Interp4Move::getDistance() const
 {
-  return _Distance_mm;
+  return _Distance_m;
 }
 
 void Interp4Move::PrintCmd() const
 {
-  cout << GetCmdName() << " " << getRobotName() << " " << _Speed_mmS << " " << _Distance_mm << " " << endl;
+  cout << GetCmdName() << " " << getRobotName() << " " << _Speed_mS << " " << _Distance_m << " " << endl;
 }
 
 const char *Interp4Move::GetCmdName() const
@@ -56,67 +58,66 @@ const char *Interp4Move::GetCmdName() const
   return ::GetCmdName();
 }
 
-bool Interp4Move::ExecCmd( AbstractScene &rScn, const char * sMobObjName, AbstractComChannel &rComChann)
+bool Interp4Move::ExecCmd(AbstractScene &rScn, const char *sMobObjName, AbstractComChannel &rComChann)
 {
-  AbstractMobileObj * pObj = rScn.FindMobileObj(sMobObjName);
+  AbstractMobileObj *pObj = rScn.FindMobileObj(sMobObjName);
 
-  if (pObj == nullptr){
-    std::cerr << GetCmdName() <<"nie znaleziono obiektu o nazwie: "<< sMobObjName << endl;
+  if (pObj == nullptr)
+  {
+    std::cerr << GetCmdName() << "nie znaleziono obiektu o nazwie: " << sMobObjName << endl;
     return false;
   }
 
-  Vector3D currentPosition = pObj->GetPosition_m();
-  double currentYawDeg = pObj->GetAng_Yaw_deg();
-  // Zamiana kąta yaw z stopni na radiany
-  double yawRadians = currentYawDeg * M_PI / 180.0;
+  // przeliczenie stopni na radiany
+  double roll_rad = DEG_TO_RAD(GetAng_Roll_deg());
+  double pitch_rad = DEG_TO_RAD(GetAng_Pitch_deg());
+  double yaw_rad = DEG_TO_RAD(GetAng_Yaw_deg());
 
-  // Obliczenie nowego przesunięcia na podstawie odległości (ruch w przód)
-  double distanceInMeters = _Distance_mm / 1000.0;  // Konwersja odległości z mm na metry
+  double distance_m = getDistance();
+  double speed_m_s = getSpeed();
+  std::string robot_name = getRobotName();
 
-  // Nowa pozycja obliczona na podstawie obecnej pozycji i przesunięcia
-  Vector3D Vtrans;
+  // wektor przesunięcia, zakładamy oś X to prosto
+  Vector3D VRot = Vector3D({cos(yaw_rad) * cos(pitch_rad),
+                            sin(yaw_rad) * cos(pitch_rad),
+                            -sin(pitch_rad)});
 
-  // wektor przesuniecia w obecnej orientacji
-  Vtrans[0] = distanceInMeters * cos(yawRadians);
-  Vtrans[1] = distanceInMeters * sin(yawRadians);
-  // Vtrans[2] = 0;
+  // obliczenie nowej pozycji
+  Vector3D VTrans = VRot * distance_m;
+  Vector3D VCurrPos = pObj->GetPosition_m();
+  VCurrPos += VTrans;
 
-  // oblcizanie nowej pozycji
-  Vector3D newPosition = currentPosition + Vtrans;
-
-  // ustawienie nowej pozycji
-  pObj->SetPosition_m(newPosition);
+  pObj->SetPosition_m(VCurrPos);
 
   return true;
 }
 
-void Interp4Move::PrintParams() const{
-  std::cout << GetCmdName() << getRobotName() << " " << getSpeed() << " " << getDistance() << std::endl;
+void Interp4Move::PrintParams() const
+{
+  std::cout << "command name: " << GetCmdName() << endl
+            << "robot name:" << getRobotName() << endl
+            << "speed [m/s]" << getSpeed() << endl
+            << "distance [m]: " << getDistance() << endl;
 }
 
-bool Interp4Move::ReadParams(std::istream& Strm_CmdsList)
+bool Interp4Move::ReadParams(std::istream &Strm_CmdsList)
 {
-  Strm_CmdsList >> _Speed_mmS >> _Distance_mm;
-  
-  if (!Strm_CmdsList) {
+  Strm_CmdsList >> _Robot_name >> _Speed_mS >> _Distance_m;
+
+  if (!Strm_CmdsList)
+  {
     std::cerr << "Błąd wczytywania danych!" << std::endl;
     return false;
-  } 
+  }
 
   return true;
 }
 
-/*!
- *
- */
 AbstractInterp4Command *Interp4Move::CreateCmd()
 {
   return new Interp4Move();
 }
 
-/*!
- *
- */
 void Interp4Move::PrintSyntax() const
 {
   cout << "   Move  NazwaObiektu  Szybkosc[m/s]  DlugoscDrogi[m]" << endl;

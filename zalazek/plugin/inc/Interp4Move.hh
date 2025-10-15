@@ -21,13 +21,8 @@
  *  Klasa modeluje ...
  */
 class Interp4Move: public AbstractInterp4Command {
-  /*
-   *  Tu należy zdefiniować pola, które są niezbędne
-   *  do przechowywania wartości parametrów danego polecenia.
-   *  Ponieżej zdefiniowane jest tylko jedno pole jako przykład.
-   */
-  double  _Speed_mmS;
-  double  _Distance_mm;
+  double  _Speed_mS;
+  double  _Distance_m;
   std::string _Robot_name;
   
  public:
