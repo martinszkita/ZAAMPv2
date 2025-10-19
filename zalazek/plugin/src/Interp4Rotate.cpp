@@ -99,49 +99,7 @@ bool Interp4Rotate::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstra
             return false;
     }
 
-    // Perform rotation in steps
-    while (std::abs(remainingAngle) > std::abs(deltaAngle / 2.0)) {
-        currentOrientation[axisIndex] += deltaAngle;
-        remainingAngle -= deltaAngle;
 
-        // Update the object's orientation in the scene
-        pObj->SetRotXYZ_deg(currentOrientation);
-
-        // Create the update command
-        std::ostringstream oss;
-        oss << "UpdateObj Name=" << sMobObjName
-            << " RotXYZ_deg=(" << currentOrientation[0] << ", "
-            << currentOrientation[1] << ", "
-            << currentOrientation[2] << ")\n";
-
-        // Send the command to the server
-        // std::string command = oss.str();
-        // if (!rComChann.Send(command.c_str())) {
-        //     std::cerr << "Failed to send command to server: " << command << std::endl;
-        //     return false;
-        // }
-
-        // // Delay for smooth animation
-        // std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(dt)));
-    }
-
-    // Final adjustment for the remaining angle (to avoid precision errors)
-    currentOrientation[axisIndex] += remainingAngle;
-    pObj->SetRotXYZ_deg(currentOrientation);
-
-    // Send the final state update
-    std::ostringstream finalOss;
-    finalOss << "UpdateObj Name=" << sMobObjName
-             << " RotXYZ_deg=(" << currentOrientation[0] << ", "
-             << currentOrientation[1] << ", "
-             << currentOrientation[2] << ")\n";
-
-    // if (!rComChann.Send(finalOss.str().c_str())) {
-    //     std::cerr << "Failed to send final command to server: " << finalOss.str() << std::endl;
-    //     return false;
-    // }
-
-    return true;
 }
 
 

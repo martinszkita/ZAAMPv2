@@ -87,6 +87,7 @@ bool Interp4Move::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstract
   Vector3D VCurrPos = pObj->GetPosition_m();
   VCurrPos += VTrans;
 
+  cout << 'MOVE, przesuniecie z: ' << pObj->GetPosition_m() << 'do:  '<< VCurrPos << endl;
   pObj->SetPosition_m(VCurrPos);
 
   return true;

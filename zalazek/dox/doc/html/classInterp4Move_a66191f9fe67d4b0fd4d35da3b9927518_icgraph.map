@@ -1,7 +1,0 @@
-<map id="Interp4Move::Interp4Move" name="Interp4Move::Interp4Move">
-<area shape="rect" id="Node000001" title=" " alt="" coords="375,5,571,31"/>
-<area shape="rect" id="Node000002" href="$classInterp4Move.html#a68d58be0519e9201e14cf27727f01aba" title="Ta metoda nie musi być zdefiniowna w klasie bazowej." alt="" coords="144,5,327,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="361,21,327,21,327,15,361,15"/>
-<area shape="rect" id="Node000003" href="$Interp4Move_8cpp.html#a166726d428619d4f4a60b1cc73f15681" title=" " alt="" coords="5,5,96,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="130,21,96,21,96,15,130,15"/>
-</map>

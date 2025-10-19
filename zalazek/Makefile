@@ -19,14 +19,15 @@ __plugin__:
 CPPFLAGS=-Wall -pedantic -std=c++17 -Iinc
 LDFLAGS=-Wall
 
+obj/gtsDebug.o: src/gtsDebug.cpp inc/gtsDebug.hh
+	g++ -c ${CPPFLAGS} -o obj/gtsDebug.o src/gtsDebug.cpp
 
 
-
-interp: obj/main.o
-	g++ ${LDFLAGS} -o interp  obj/main.o -ldl
+interp: obj/main.o obj/gtsDebug.o
+	g++ ${LDFLAGS} -o interp obj/main.o obj/gtsDebug.o -ldl
 
 obj/main.o: src/main.cpp inc/AbstractInterp4Command.hh inc/AbstractScene.hh\
-            inc/AbstractComChannel.hh
+            inc/AbstractComChannel.hh inc/gtsDebug.hh
 	g++ -c ${CPPFLAGS} -o obj/main.o src/main.cpp
 
 doc:

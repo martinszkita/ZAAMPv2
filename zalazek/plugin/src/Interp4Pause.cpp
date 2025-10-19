@@ -18,7 +18,7 @@ AbstractInterp4Command* Interp4Pause::CreateCmd()
   return new Interp4Pause();
 }
 
-Interp4Pause::Interp4Pause(): _pause_time_ms(0)/*,_robotName("")*/ {}
+Interp4Pause::Interp4Pause(): _pause_time_ms(0) {}
 
 const std::string& Interp4Pause::GetRobotName() const {
     return _robotName;
