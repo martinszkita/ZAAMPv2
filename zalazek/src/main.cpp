@@ -8,14 +8,14 @@ using namespace std;
 int main(int argc, char **argv)
 {
   // sprawdzenie czy liczba parametrów jest poprawna
-  if (argc != 3)
-  {
-    cerr << "Usage: " << argv[0] << " <config_file.xml> <instructions_file.xml>" << endl;
-    return 1;
-  }
+  // if (argc != 3)
+  // {
+  //   cerr << "Usage: " << argv[0] << " <config_file.xml> <instructions_file.xml>" << endl;
+  //   return 1;
+  // }
 
-    const char *configFileName = argv[1];
-    const char *instructionFile = argv[2];
+  //   const char *configFileName = argv[1];
+  //   const char *instructionFile = argv[2];
   /* *************************************** */
   void *pLibHnd_Move = dlopen("libInterp4Move.so", RTLD_LAZY);
   AbstractInterp4Command *(*pCreateCmd_Move)(void);
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
     cerr << "!!! Nie znaleziono funkcji CreateCmd" << endl;
     return 1;
   }
-  pCreateCmd_Move = reinterpret_cast<AbstractInterp4Command *(*)(void)>(pFun);
+  pCreateCmd_Move = reinterpret_cast<AbstractInterp4Command *(*)()>(pFun);
 
   AbstractInterp4Command *pCmd = pCreateCmd_Move();
 

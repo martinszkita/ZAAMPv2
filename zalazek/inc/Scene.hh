@@ -92,13 +92,14 @@ public:
   // /*!
   //  * \brief Prosta kolekcja obiektów sceny
   //  */
-  //  std::vector<GeomObject>   _Container4Objects;
+   std::vector<GeomObject>   _Container4Objects;
     /*!
      * \brief Konstruktor domyślny klasy Scene.
      *
      * Inicjalizuje pustą scenę.
      */
-    Scene() = default;
+    
+     Scene() = default;
 
     // Scene(): _Container4Objects(3)
     // {

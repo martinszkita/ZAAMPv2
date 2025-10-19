@@ -1,5 +1,0 @@
-<map id="Graficzna hierarchia klas" name="Graficzna hierarchia klas">
-<area shape="rect" id="Node000000" href="$classAbstractInterp4Command.html" title="Definiuje interfejs interpretera polecenia." alt="" coords="5,5,189,31"/>
-<area shape="rect" id="Node000001" href="$classInterp4Move.html" title="Modeluje polecenie dla robota mobilnego, które wymusza jego ruch do przodu." alt="" coords="237,5,343,31"/>
-<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="203,15,237,15,237,21,203,21"/>
-</map>
