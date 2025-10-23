@@ -38,12 +38,12 @@ public:
      *
      * Tworzy obiekt bez inicjalizacji gniazda socketu.
      */
-    ComChannel() = default;
+    ComChannel() {}
 
     /*!
      * \brief Domyślny destruktor klasy ComChannel.
      */
-    ~ComChannel() = default;
+    ~ComChannel() {}
 
     /*!
      * \brief Pobiera numer socketu komunikacyjnego.

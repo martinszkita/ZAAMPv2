@@ -4,7 +4,6 @@ __start__: obj __lines_for_space__ interp __plugin__
 obj:
 	mkdir obj
 
-
 __lines_for_space__:
 	@echo
 	@echo
@@ -12,27 +11,30 @@ __lines_for_space__:
 	@echo
 	@echo
 
-
 __plugin__:
 	cd plugin; make
 
 CPPFLAGS=-Wall -pedantic -std=c++17 -Iinc
 LDFLAGS=-Wall
 
+# obj/Scene.o: src/Scene.cpp inc/AbstractScene.hh
+# 	g++ -c ${CPPFLAGS} -o obj/Scene.o src/Scene.cpp
+
+# obj/ComChannel.o: src/ComChannel.cpp inc/AbstractComChannel.hh
+# 	g++ -c ${CPPFLAGS} -o obj/ComChannel.o src/ComChannel.cpp
+
+obj/main.o: src/main.cpp
+	g++ -c ${CPPFLAGS} -o obj/main.o src/main.cpp
 
 interp: obj/main.o
 	g++ ${LDFLAGS} -o interp  obj/main.o -ldl
-
-obj/main.o: src/main.cpp inc/AbstractInterp4Command.hh inc/AbstractScene.hh\
-            inc/AbstractComChannel.hh
-	g++ -c ${CPPFLAGS} -o obj/main.o src/main.cpp
+#obj/Scene.o obj/ComChannel.o 
 
 doc:
 	cd dox; make
 
 clean:
 	rm -f obj/* interp core*
-
 
 clean_plugin:
 	cd plugin; make clean

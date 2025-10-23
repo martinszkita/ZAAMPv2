@@ -2,6 +2,12 @@
 #include <dlfcn.h>
 #include <cassert>
 #include "AbstractInterp4Command.hh"
+#include "AbstractComChannel.hh"
+#include "Scene.hh"
+#include "ComChannel.hh"
+#include <fstream>
+#include <istream>
+#include <sstream>
 
 using namespace std;
 
@@ -17,6 +23,9 @@ int main(int argc, char **argv)
   //   const char *configFileName = argv[1];
   //   const char *instructionFile = argv[2];
   /* *************************************** */
+  // AbstractScene * scene = new Scene;
+  // AbstractComChannel * com_channel = new ComChannel;
+
   void *pLibHnd_Move = dlopen("libInterp4Move.so", RTLD_LAZY);
   AbstractInterp4Command *(*pCreateCmd_Move)(void);
   void *pFun;
@@ -37,6 +46,22 @@ int main(int argc, char **argv)
 
   AbstractInterp4Command *pCmd = pCreateCmd_Move();
 
+  std::fstream commandFile("commands.cmd");
+
+  if (!commandFile.is_open()){
+    cerr << "file opening error" << endl;
+    return 1;
+  }
+
+  string line;
+
+  while (getline(commandFile, line)){
+    istringstream iss(line);
+    pCmd->ReadParams(iss);
+    cout << "przeczytalem: " << line << endl;
+  }
+
+
   cout << endl;
   cout << pCmd->GetCmdName() << endl;
   cout << endl;
@@ -44,8 +69,11 @@ int main(int argc, char **argv)
   cout << endl;
   pCmd->PrintCmd();
   cout << endl;
+  pCmd->PrintParams();
 
   delete pCmd;
+
+  commandFile.close();
 
   dlclose(pLibHnd_Move);
 }

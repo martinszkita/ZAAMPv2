@@ -2,6 +2,7 @@
 #include <iostream>
 #include <unistd.h>  // Dla funkcji close()
 
+
 void ComChannel::SendMoveCommand(const std::string& objectName, double speed, double distance) {
         std::cout << "Wysyłanie komendy ruchu dla " << objectName
                   << " z prędkością " << speed << " i odległością " << distance << std::endl;

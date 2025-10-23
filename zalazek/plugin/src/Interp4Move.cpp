@@ -102,8 +102,14 @@ void Interp4Move::PrintParams() const
 
 bool Interp4Move::ReadParams(std::istream &Strm_CmdsList)
 {
-  Strm_CmdsList >> _Robot_name >> _Speed_mS >> _Distance_m;
+  std::string commandName;
+  Strm_CmdsList >> commandName >>_Robot_name >> _Speed_mS >> _Distance_m;
 
+  if (commandName != "Move"){
+    std::cerr << "Interp4Move a zle polecenie w command.cmd";
+    return false;
+  }
+  
   if (!Strm_CmdsList)
   {
     std::cerr << "Błąd wczytywania danych!" << std::endl;

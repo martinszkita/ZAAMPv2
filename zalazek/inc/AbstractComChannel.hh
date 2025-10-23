@@ -21,7 +21,8 @@
     class AbstractComChannel {
      public:
 
-      virtual ~AbstractComChannel() {}
+
+      virtual ~AbstractComChannel(){}
       
       /*!
        * \brief Inicjalizuje destryptor gniazda.
@@ -53,7 +54,7 @@
         *  np. poprzez klasę std::lock_gaurd, która daje możliwość
         *  bezpieczniejszego zamknięcia.
         */
-       virtual std::mutex &UseGuard();
+       virtual std::mutex &UseGuard() = 0;
     };
 
 
