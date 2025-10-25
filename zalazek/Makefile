@@ -17,18 +17,21 @@ __plugin__:
 CPPFLAGS=-Wall -pedantic -std=c++17 -Iinc
 LDFLAGS=-Wall
 
-# obj/Scene.o: src/Scene.cpp inc/AbstractScene.hh
-# 	g++ -c ${CPPFLAGS} -o obj/Scene.o src/Scene.cpp
-
-# obj/ComChannel.o: src/ComChannel.cpp inc/AbstractComChannel.hh
-# 	g++ -c ${CPPFLAGS} -o obj/ComChannel.o src/ComChannel.cpp
-
 obj/main.o: src/main.cpp
 	g++ -c ${CPPFLAGS} -o obj/main.o src/main.cpp
 
-interp: obj/main.o
+# rozwijanie makr preprocesora dla dowolnego pliku z obecnej sciezki
+# uzycie: make commands FILE=<plik.cmd>
+
+FILE ?= commands.cmd # domyslny plik, jesli nie zostanie podany zaden inny
+OUTPUT := $(basename $(FILE)) # plik z rozwinietymi makrami i usunietymi komentarzami
+
+commands: $(FILE)
+	@echo "Rozwijam makra z pliku $(FILE) -> $(OUTPUT)!"
+	g++ -x c++ -E -P $(FILE) -o $(OUTPUT)
+
+interp: obj/main.o commands
 	g++ ${LDFLAGS} -o interp  obj/main.o -ldl
-#obj/Scene.o obj/ComChannel.o 
 
 doc:
 	cd dox; make
@@ -45,21 +48,5 @@ cleanall: clean
 	rm -f libs/*
 	find . -name \*~ -print -exec rm {} \;
 
-help:
-	@echo
-	@echo "  Lista podcelow dla polecenia make"
-	@echo 
-	@echo "        - (wywolanie bez specyfikacji celu) wymusza"
-	@echo "          kompilacje i uruchomienie programu."
-	@echo "  clean    - usuwa produkty kompilacji oraz program"
-	@echo "  clean_plugin - usuwa plugin"
-	@echo "  cleanall - wykonuje wszystkie operacje dla podcelu clean oraz clean_plugin"
-	@echo "             oprocz tego usuwa wszystkie kopie (pliki, ktorych nazwa "
-	@echo "             konczy sie znakiem ~)."
-	@echo "  help  - wyswietla niniejszy komunikat"
-	@echo
-	@echo " Przykladowe wywolania dla poszczegolnych wariantow. "
-	@echo "  make           # kompilacja i uruchomienie programu."
-	@echo "  make clean     # usuwa produkty kompilacji."
-	@echo
+
  
