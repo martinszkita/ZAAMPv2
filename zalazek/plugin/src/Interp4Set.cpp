@@ -43,13 +43,8 @@ void Interp4Set::SetRPY(const Vector3D& _RPY) {
     rpy = _RPY;
 }
 
-
-
 void Interp4Set::PrintCmd() const {
-    std::cout << "Obecne polecenie: Set " <<std::endl;
-    std::cout << GetCmdName() << " " << _robotName << " "
-              << GetPosition()[0] << " " << GetPosition()[1] << " " << GetPosition()[2] << " "
-              << GetRPY()[0] << " " << GetRPY()[1] << " " << GetRPY()[2] << " \n";
+    std::cout << GetCmdName() << " " << _robotName << GetPosition() << GetRPY() << std::endl;
 }
 
 bool Interp4Set::ExecCmd( AbstractScene &rScn, const char * sMobObjName,AbstractComChannel &rComChann)  {
@@ -61,9 +56,7 @@ bool Interp4Set::ExecCmd( AbstractScene &rScn, const char * sMobObjName,Abstract
   }
 
   pObj->SetPosition_m(pos);
-  pObj->SetAng_Roll_deg(rpy[0]);
-  pObj->SetAng_Pitch_deg(rpy[1]);
-  pObj->SetAng_Yaw_deg(rpy[2]);
+  pObj->SetRotXYZ_deg(rpy);
 
   return true;
 }
@@ -78,14 +71,10 @@ void Interp4Set::PrintSyntax() const{
     std::cout << "Set nazwa_obiektu wsp_x wsp_y wsp_z kat_OX kat_OY kat_OZ" << std::endl;
 }
 void Interp4Set::PrintParams() const{
-    std::cout << "Set Command Params:" << std::endl;
+    std::cout << "Set Command Params: " << std::endl;
     std::cout << "nazwa_obiektu: " << GetRobotName() << std::endl;
-    std::cout << "wsp_x: " << GetPosition()[0] << std::endl;
-    std::cout << "wso_y: " << GetPosition()[1] << std::endl;
-    std::cout << "wsp_z: " << GetPosition()[2] << std::endl;
-    std::cout << "kat_OX: " << GetPosition()[0] << std::endl;
-    std::cout << "kat_OY: " << GetPosition()[1] << std::endl;
-    std::cout << "kat_OZ: " << GetPosition()[2] << std::endl;
+    std::cout << "wsp_XYZ [m,m,m]: " << GetPosition() << std::endl;
+    std::cout << "kat_RPY [deg, deg, deg]: " <<  GetRPY() << std::endl;
 }
 
 

@@ -31,7 +31,7 @@ private:
     std::string _robotName;
 
     /*!
-     * \brief Oś obrotu ('x', 'y', lub 'z').
+     * \brief Oś obrotu ('X', 'Y', lub 'Z').
      */
     char _axis;
 
@@ -61,7 +61,7 @@ public:
     /*!
      * \brief Pobiera oś obrotu.
      *
-     * \return Znak reprezentujący oś ('x', 'y', 'z').
+     * \return Znak reprezentujący oś ('X', 'Y', 'Z').
      */
     char GetAxis() const;
 
@@ -89,7 +89,7 @@ public:
     /*!
      * \brief Ustawia oś obrotu.
      *
-     * \param[in] axis - Znak reprezentujący oś ('x', 'y', 'z').
+     * \param[in] axis - Znak reprezentujący oś ('X', 'Y', 'Z').
      */
     void SetAxis(char axis);
 

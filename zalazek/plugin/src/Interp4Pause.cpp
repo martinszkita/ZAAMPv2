@@ -18,13 +18,12 @@ AbstractInterp4Command* Interp4Pause::CreateCmd()
   return new Interp4Pause();
 }
 
-Interp4Pause::Interp4Pause(): _pause_time_ms(0)/*,_robotName("")*/ {}
+Interp4Pause::Interp4Pause(): _pause_time_ms(0){}
 
 const std::string& Interp4Pause::GetRobotName() const {
     return _robotName;
 }
 
-//void SetRobotName(const std::string& name){}
 void Interp4Pause::SetPauseTime(const unsigned int & _ms){
     _pause_time_ms=_ms;
 }
@@ -38,8 +37,7 @@ void Interp4Pause::SetRobotName(const std::string& name) {
 }
 
 void Interp4Pause::PrintCmd() const {
-    std::cout << "Obecne polecenie:  " << GetCmdName() << std::endl;
-    std::cout << GetPauseTime() << std::endl;
+    std::cout << "Obecne polecenie:  " << GetCmdName() << GetPauseTime() <<std::endl;
 }
 
 bool Interp4Pause::ExecCmd( AbstractScene &rScn, const char * sMobObjName,AbstractComChannel &rComChann)  {

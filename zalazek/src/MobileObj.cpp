@@ -33,7 +33,6 @@ void MobileObj::SetName(const char *sName)
 
 double MobileObj::operator[](char axis) const
 {
-    std::cout << "operator [] z klasy mobileObj " << std::endl;
     switch (axis)
     {
     case 'X':
@@ -47,15 +46,7 @@ double MobileObj::operator[](char axis) const
     }
 }
 
-// double& MobileObj::operator[](char axis) {
-//     switch (axis) {
-//         case 'X': return _roll;
-//         case 'Y': return _pitch;
-//         case 'Z': return _yaw;
-//         default:
-//             throw std::invalid_argument("Invalid axis. Use 'X', 'Y', or 'Z'.");
-//     }
-// }
+
 
 int MobileObj::GetAxisIndex(char axis)
 {

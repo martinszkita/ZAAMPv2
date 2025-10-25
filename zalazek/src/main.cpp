@@ -39,9 +39,10 @@ int main(int argc, char **argv)
     istringstream iss(line);
     string commandName;
 
+    // cout << "iss stream przed iss >> CommandName: " << iss.str() << endl;
     iss >> commandName; // pierwsze slowo w linii to nazwa komendy
+    // cout << "iss stream po: " << iss.str() << endl;
     bool commandNameOk = false;
-    
 
     for (const auto &elem : commandNames)
     {
@@ -57,15 +58,18 @@ int main(int argc, char **argv)
       return 1;
     }
 
-    string libName = "libInterp4" + commandName + ".so";   // przygotowana nazwa biblioteki dynamicznej
+    string libName = "libInterp4" + commandName + ".so"; // przygotowana nazwa biblioteki dynamicznej
 
     void *pLibHandle = dlopen(libName.c_str(), RTLD_LAZY); // uchwyt do biblioteki
 
     if (!pLibHandle)
     {
       cerr << "!!! Brak biblioteki: " << libName << endl;
+      cerr << dlerror() << endl;
       return 1;
     }
+
+    cout << "Zaladowalem biblioteke: " << libName << endl;
 
     openLibs.push_back(pLibHandle);
     AbstractInterp4Command *(*pCreateCmd)(void); // wskaznik na funkcje ktora zwraca AbstractInterp4Command * i nie przyjmuje argumentow
@@ -80,23 +84,17 @@ int main(int argc, char **argv)
     pCreateCmd = reinterpret_cast<AbstractInterp4Command *(*)()>(pFun);
     AbstractInterp4Command *pCmd = pCreateCmd();
 
-    cout << endl;
-    cout << pCmd->GetCmdName() << endl;
-    cout << endl;
-    pCmd->PrintSyntax();
-    cout << endl;
-    pCmd->PrintCmd();
+    pCmd->ReadParams(iss);
     cout << endl;
     pCmd->PrintParams();
 
     delete pCmd;
   }
 
-  
   commandFile.close();
 
-  for (const auto & lib: openLibs){
-     dlclose(lib);
+  for (const auto &lib : openLibs)
+  {
+    dlclose(lib);
   }
-
 }
