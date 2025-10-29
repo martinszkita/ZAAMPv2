@@ -75,7 +75,6 @@ bool Interp4Move::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstract
 
   double distance_m = getDistance();
   double speed_m_s = getSpeed();
-  std::string robot_name = getRobotName();
 
   // wektor przesunięcia, zakładamy oś X to prosto
   Vector3D VRot = Vector3D({cos(yaw_rad) * cos(pitch_rad),
@@ -94,22 +93,16 @@ bool Interp4Move::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstract
 
 void Interp4Move::PrintParams() const
 {
-  std::cout << "command name: " << GetCmdName() << endl
-            << "robot name:" << getRobotName() << endl
+  std::cout << "Move command parameters: " <<  endl
+            << "robot name: " << getRobotName() << endl
             << "speed [m/s]" << getSpeed() << endl
             << "distance [m]: " << getDistance() << endl;
 }
 
 bool Interp4Move::ReadParams(std::istream &Strm_CmdsList)
 {
-  std::string commandName;
-  Strm_CmdsList >> commandName >>_Robot_name >> _Speed_mS >> _Distance_m;
+  Strm_CmdsList >> _Robot_name >> _Speed_mS >> _Distance_m;
 
-  if (commandName != "Move"){
-    std::cerr << "Interp4Move a zle polecenie w command.cmd";
-    return false;
-  }
-  
   if (!Strm_CmdsList)
   {
     std::cerr << "Błąd wczytywania danych!" << std::endl;
@@ -126,5 +119,5 @@ AbstractInterp4Command *Interp4Move::CreateCmd()
 
 void Interp4Move::PrintSyntax() const
 {
-  cout << "   Move  NazwaObiektu  Szybkosc[m/s]  DlugoscDrogi[m]" << endl;
+  cout << "Move  NazwaObiektu  Szybkosc[m/s]  DlugoscDrogi[m]" << endl;
 }
