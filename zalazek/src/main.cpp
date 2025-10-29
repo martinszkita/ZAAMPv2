@@ -17,7 +17,7 @@ int main(int argc, char **argv)
   // sprawdzenie czy liczba parametrów jest poprawna
   if (!argc)
   {
-    cerr << "Usage: " << argv[0] << " <commands.cmd>" << endl;
+    cerr << "Usage: " << argv[0] << " <commands>" << endl;
     return 1;
   }
 
