@@ -39,9 +39,8 @@ int main(int argc, char **argv)
     istringstream iss(line);
     string commandName;
 
-    // cout << "iss stream przed iss >> CommandName: " << iss.str() << endl;
     iss >> commandName; // pierwsze slowo w linii to nazwa komendy
-    // cout << "iss stream po: " << iss.str() << endl;
+
     bool commandNameOk = false;
 
     for (const auto &elem : commandNames)
@@ -69,7 +68,7 @@ int main(int argc, char **argv)
       return 1;
     }
 
-    cout << "Zaladowalem biblioteke: " << libName << endl;
+    cout << "Zaladowalem biblioteke: " << libName;
 
     openLibs.push_back(pLibHandle);
     AbstractInterp4Command *(*pCreateCmd)(void); // wskaznik na funkcje ktora zwraca AbstractInterp4Command * i nie przyjmuje argumentow
@@ -87,6 +86,8 @@ int main(int argc, char **argv)
     pCmd->ReadParams(iss);
     cout << endl;
     pCmd->PrintParams();
+
+    cout << endl;
 
     delete pCmd;
   }

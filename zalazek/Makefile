@@ -1,5 +1,5 @@
-__start__: obj __lines_for_space__ interp __plugin__
-	export LD_LIBRARY_PATH="./libs"; ./interp
+__start__: obj __lines_for_space__ interp __plugin__ commands
+	export LD_LIBRARY_PATH="./libs"; ./interp commands
 
 obj:
 	mkdir obj
