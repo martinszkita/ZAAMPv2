@@ -45,6 +45,19 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "numbers": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "format": "cpp",
+        "fstream": "cpp",
+        "array": "cpp",
+        "atomic": "cpp",
+        "charconv": "cpp",
+        "condition_variable": "cpp",
+        "memory": "cpp",
+        "iomanip": "cpp",
+        "semaphore": "cpp",
+        "span": "cpp",
+        "stop_token": "cpp",
+        "variant": "cpp",
+        "*.cmd": "cpp"
     }
 }
