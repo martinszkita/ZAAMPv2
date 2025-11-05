@@ -10,6 +10,7 @@
  */
 
 #include "Vector3D.hh"
+#include <string>
 
 /*!
  * \brief Definiuje interfejs dla obiektów mobilnych.
@@ -87,6 +88,16 @@ public:
    *         że współrzędne wyrażone są w metrach.
    */
   virtual void SetPosition_m(const Vector3D &rPos) = 0;
+
+  /*!
+   * \brief Udostępnia opis stanu obiektu wykorzystywany przez serwer graficzny.
+   *
+   *  Udostępnia opis stanu obiektu wykorzystywany przez serwer graficzny.
+   *  Każda klasa dziedzicząca powinna zwracać tekstową reprezentację aktualnego
+   *  stanu zgodną z oczekiwanym protokołem komunikacyjnym.
+   *  \return Napis opisujący aktualny stan obiektu.
+   */
+  virtual std::string GetStateDesc() const = 0;
 
   /*!
    * \brief Zmienia nazwę obiektu.
