@@ -1,9 +1,0 @@
-/home/mpozniak/sem7/ZAAMP/git/ZAAMPv2/build/CMakeFiles/cmds_interpreter.dir
-/home/mpozniak/sem7/ZAAMP/git/ZAAMPv2/build/CMakeFiles/edit_cache.dir
-/home/mpozniak/sem7/ZAAMP/git/ZAAMPv2/build/CMakeFiles/rebuild_cache.dir
-/home/mpozniak/sem7/ZAAMP/git/ZAAMPv2/build/plugin/CMakeFiles/Interp4Move.dir
-/home/mpozniak/sem7/ZAAMP/git/ZAAMPv2/build/plugin/CMakeFiles/Interp4Set.dir
-/home/mpozniak/sem7/ZAAMP/git/ZAAMPv2/build/plugin/CMakeFiles/Interp4Rotate.dir
-/home/mpozniak/sem7/ZAAMP/git/ZAAMPv2/build/plugin/CMakeFiles/Interp4Pause.dir
-/home/mpozniak/sem7/ZAAMP/git/ZAAMPv2/build/plugin/CMakeFiles/edit_cache.dir
-/home/mpozniak/sem7/ZAAMP/git/ZAAMPv2/build/plugin/CMakeFiles/rebuild_cache.dir
