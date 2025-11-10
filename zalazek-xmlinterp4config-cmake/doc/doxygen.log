@@ -1,0 +1,37 @@
+warning: Tag 'OUTPUT_TEXT_DIRECTION' at line 102 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: Tag 'TCL_SUBST' at line 260 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: Tag 'COLS_IN_ALPHA_INDEX' at line 1112 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: Tag 'HTML_TIMESTAMP' at line 1248 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: Tag 'FORMULA_TRANSPARENT' at line 1540 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: Tag 'LATEX_SOURCE_CODE' at line 1848 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: Tag 'LATEX_TIMESTAMP' at line 1864 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: Tag 'RTF_SOURCE_CODE' at line 1938 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: Tag 'DOCBOOK_PROGRAMLISTING' at line 2043 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: Tag 'CLASS_DIAGRAMS' at line 2230 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: Tag 'DOT_FONTNAME' at line 2272 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: Tag 'DOT_FONTSIZE' at line 2279 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: Tag 'DOT_TRANSPARENT' at line 2505 of file 'xmlinterpreter.doxy' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
+warning: argument 'a4wide' for option PAPER_TYPE is not a valid enum value
+Using the default: a4!
+warning: doxygen no longer ships with the FreeSans font.
+  You may want to clear or change DOT_FONTNAME.
+  Otherwise you run the risk that the wrong font is being used for dot generated graphs.
+warning: The selected output language "polish" has not been updated
+since release 1.8.2.  As a result some sentences may appear in English.
+
+warning: source 'res/img' is not a readable file or directory... skipping.
+
+Nacisnij Q, aby zakonczyc przegladanie

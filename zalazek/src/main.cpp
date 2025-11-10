@@ -9,19 +9,24 @@
 #include <istream>
 #include <sstream>
 #include "CommandNames.hh"
+#include "xmlinterp.hh"
 
 using namespace std;
 
 int main(int argc, char **argv)
 {
   // sprawdzenie czy liczba parametrów jest poprawna
-  if (!argc)
+  if (argc != 3)
   {
-    cerr << "Usage: " << argv[0] << " <commands>" << endl;
+    cerr << "Usage: " << argv[0] << " <config_file.xml> <instructions_file.xml>" << endl;
     return 1;
   }
+  const char *configFileName = argv[1];
+  const char *commandFileName = argv[2];
+  
+  Configuration config = XMLInterp4Config::redConfigurationFromXML(configFileName);
 
-  const char *commandFileName = argv[1];
+  
   ifstream commandFile;
   commandFile.open(commandFileName);
 
@@ -53,7 +58,7 @@ int main(int argc, char **argv)
 
     if (!commandNameOk)
     {
-      cerr << "bledna nazwa komendy w pliku: " << commandFileName << endl;
+      cerr << "bledna nazwa komendy w pliku: "<< line <<" " << commandFileName << endl;
       return 1;
     }
 

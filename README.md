@@ -18,10 +18,3 @@ The top-level `CMakeLists.txt` pins C++17, disables compiler extensions, and add
 ## Plugin Interface Update
 `AbstractMobileObj.hh` now requires derived classes to implement `std::string GetStateDesc() const`. This pure-virtual method documents the need for plugins to expose a textual representation of the mobile object's state for the graphical server, ensuring all implementations satisfy the communication protocol.
 
-## Repository Hygiene
-Generated CMake build artifacts are ignored via `.gitignore` to keep the working tree clean after configuration and compilation.
-
-## Legacy Make Targets
-The original make targets are still available:
-- Prepare command files: `make commands <commands.cmd>`
-- Execute command sequences: `make <commands>` (omit the `.cmd` extension)

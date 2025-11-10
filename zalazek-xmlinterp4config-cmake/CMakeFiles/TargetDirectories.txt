@@ -1,0 +1,3 @@
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek-xmlinterp4config-cmake/CMakeFiles/xmlinterp4config.dir
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek-xmlinterp4config-cmake/CMakeFiles/edit_cache.dir
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek-xmlinterp4config-cmake/CMakeFiles/rebuild_cache.dir
