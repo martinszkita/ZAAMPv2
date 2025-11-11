@@ -13,6 +13,7 @@
 #include "xmlinterp.hh"
 #include "Sender.hh"
 #include <thread>
+#include <memory>
 #include "MobileObj.hh"
 #include "Interp4Move.hh"
 
@@ -42,7 +43,7 @@ int main(int argc, char **argv)
 
   string line;
   vector<void *> openLibs;
-  vector<AbstractInterp4Command *> commands;
+  vector<std::unique_ptr<AbstractInterp4Command>> commands;
   map<string, shared_ptr<AbstractMobileObj>> mapMobileObjects;
 
   // Inicjalizacja połączenia z serwerem
@@ -148,16 +149,15 @@ int main(int argc, char **argv)
     }
 
     pCreateCmd = reinterpret_cast<AbstractInterp4Command *(*)()>(pFun);
-    AbstractInterp4Command *pCmd = pCreateCmd();
+    std::unique_ptr<AbstractInterp4Command> pCmd(pCreateCmd());
     pCmd->ReadParams(iss);
     cout << endl;
 
-    commands.push_back(pCmd);
     cout << "dodalem komende: " << pCmd->GetCmdName() << " do vectora polecen! \n";
     // pCmd->PrintParams();
     cout << endl;
 
-    delete pCmd;
+    commands.push_back(std::move(pCmd));
   }
 
   commandFile.close();
@@ -170,7 +170,7 @@ int main(int argc, char **argv)
     if (std::strcmp(cmd->GetCmdName(), "Move") == 0)
     {
       cout << "wykryłem komende move! \n";
-      if (auto *move = dynamic_cast<Interp4Move *>(cmd))
+      if (auto *move = dynamic_cast<Interp4Move *>(cmd.get()))
       {
         comChannel.SendMoveCommand(
             move->getRobotName(),
