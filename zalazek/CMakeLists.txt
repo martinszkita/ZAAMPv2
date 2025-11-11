@@ -26,7 +26,14 @@ add_executable(${CMDS_INTERPRETER_TARGET}
 target_include_directories(${CMDS_INTERPRETER_TARGET}
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/inc
+        ${CMAKE_CURRENT_SOURCE_DIR}/plugin/inc
 )
+
+target_link_libraries(${CMDS_INTERPRETER_TARGET}
+    PRIVATE
+        ${ZALAZEK_PLUGIN_TARGETS}
+)
+
 
 target_compile_features(${CMDS_INTERPRETER_TARGET} PRIVATE cxx_std_17)
 

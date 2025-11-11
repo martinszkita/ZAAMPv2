@@ -1,7 +1,1 @@
-Set Ob_A 2 0 3 30 10 0
-Set Ob_B 10 10 3 0 0 20
-Rotate Ob_B Y 30 40
-Pause 1000
-Move Ob_A 10 10
-Rotate Ob_B Z 30 60
-Move Ob_B 10 20
+Move Podstawa.Ramie1.Ramie2 10 20

@@ -58,6 +58,7 @@
         "span": "cpp",
         "stop_token": "cpp",
         "variant": "cpp",
-        "*.cmd": "cpp"
+        "*.cmd": "cpp",
+        "future": "cpp"
     }
 }

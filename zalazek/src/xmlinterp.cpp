@@ -105,7 +105,7 @@ void XMLInterp4Config::ProcessCubeAttrs(const Attributes &rAttrs) {
     }
 
     _config.cubes.push_back(cube);
-    std::cout << "Loaded cube: " << cube.name << std::endl
+    std::cout << "Loaded cube from xml config: " << cube.name << std::endl
     << "shift: " << stringToVecString(cube.shift)  << std::endl
     << "scale: " << stringToVecString(cube.scale) << std::endl
     << "rotXYZ: "<< stringToVecString(cube.rotXYZ)<< std::endl

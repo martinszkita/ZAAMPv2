@@ -79,9 +79,9 @@ class Sender {
 };
 
 /*!
- * \brief Wysyła napis do poprzez gniazdo sieciowe.
+ * \brief Wysyła napis do serwera poprzez gniazdo sieciowe.
  *
- * Wysyła napis do poprzez gniazdo sieciowe.
+ * Wysyła napis do serwera poprzez gniazdo sieciowe.
  * \param[in] Sk2Server - deskryptor gniazda sieciowego, poprzez które 
  *                        ma zostać wysłany napis w sensie języka C.
  * \param[in] sMesg - zawiera napis, który ma zostać wysłany poprzez

@@ -4,7 +4,7 @@ set(PLUGIN_INCLUDE_DIRS
 )
 
 foreach(plugin_target IN LISTS ZALAZEK_PLUGIN_TARGETS)
-    add_library(${plugin_target} MODULE src/${plugin_target}.cpp)
+    add_library(${plugin_target} SHARED src/${plugin_target}.cpp)
     target_include_directories(${plugin_target}
         PRIVATE
             ${PLUGIN_INCLUDE_DIRS}

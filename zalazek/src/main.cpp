@@ -14,6 +14,7 @@
 #include "Sender.hh"
 #include <thread>
 #include "MobileObj.hh"
+#include "Interp4Move.hh"
 
 using namespace std;
 
@@ -53,6 +54,13 @@ int main(int argc, char **argv)
 
   Sender ClientSender(Socket4Sending, &scene);
   std::thread Thread4Sending(Fun_CommunicationThread, &ClientSender);
+  ComChannel comChannel;
+
+  if (!comChannel.Init(Socket4Sending))
+  {
+    cerr << "Błąd przy inicjalizacji comChannel!" << endl;
+    return 1;
+  }
 
   // czyscimy scene przed wyslaniem
   if (Send(Socket4Sending, "Clear \n") < 0)
@@ -82,18 +90,15 @@ int main(int argc, char **argv)
     }
     else
     {
-      std::cout << "Sukces: udalo sie wysłać na serwer!" << std::endl;
+      std::cout << "Sukces: udalo sie wysłać na serwer: "<< oss.str() << std::endl;
     }
 
-    // Dodawanie obiektu do sceny
     mapMobileObjects[cube.name] = make_shared<MobileObj>(cube.name);
   }
 
+  // Dodawanie obiektów do sceny
   scene.SetObjects(mapMobileObjects);
-  cout << "############################\n";
-  scene.PrintAllSceneObjects();
-  cout << "############################\n";
-  
+
   // wczytywanie poleceń z pliku do vectora
   while (getline(commandFile, line))
   {
@@ -109,12 +114,13 @@ int main(int argc, char **argv)
       if (commandName == elem)
       {
         commandNameOk = true;
+        break;
       }
     }
 
     if (!commandNameOk)
     {
-      cerr << "bledna nazwa komendy w pliku: " << line << " " << commandFileName << endl;
+      cerr << "bledna nazwa komendy: "<< commandName<< " w pliku: " << line << " " << commandFileName << endl;
       return 1;
     }
 
@@ -143,13 +149,12 @@ int main(int argc, char **argv)
 
     pCreateCmd = reinterpret_cast<AbstractInterp4Command *(*)()>(pFun);
     AbstractInterp4Command *pCmd = pCreateCmd();
-
     pCmd->ReadParams(iss);
     cout << endl;
 
     commands.push_back(pCmd);
     cout << "dodalem komende: " << pCmd->GetCmdName() << " do vectora polecen! \n";
-    pCmd->PrintParams();
+    // pCmd->PrintParams();
     cout << endl;
 
     delete pCmd;
@@ -157,20 +162,30 @@ int main(int argc, char **argv)
 
   commandFile.close();
 
-  // wysylanie polecenia do serwera
-  for (const auto &command : commands)
-  {
-    // const char * cmdName = command->
-    // AbstractMobileObj *pObj = scene.FindMobileObj(command.);
-    // if (!pObj)
-    // {
-    //   cerr << "Obiekt " << objectName << " nie został znaleziony w scenie!" << endl;
-    //   return 1;
-    // }
-    // command->ExecCmd(scene, )
 
-    // Opóźnienie dla płynności animacji
-    // std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(dt)));
+  cout << "poczatek wysylania komend do serwera! \n";
+  // wysylanie polecenia do serwera
+  for (const auto &cmd : commands)
+  {
+    if (std::strcmp(cmd->GetCmdName(), "Move") == 0)
+    {
+      cout << "wykryłem komende move! \n";
+      if (auto *move = dynamic_cast<Interp4Move *>(cmd))
+      {
+        comChannel.SendMoveCommand(
+            move->getRobotName(),
+            move->getSpeed(),
+            move->getDistance());
+      }
+      else{
+        cout << "inna komenda niz move, skipuje.";
+        continue;
+      }
+    }
+    else{
+      cerr << "error w wysyłaniu polecen do serwera! \n";
+      return 1;
+    }
   }
 
   for (const auto &lib : openLibs)
