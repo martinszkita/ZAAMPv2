@@ -13,6 +13,7 @@
 #include "xmlinterp.hh"
 #include "Sender.hh"
 #include <thread>
+#include "MobileObj.hh"
 
 using namespace std;
 
@@ -41,7 +42,7 @@ int main(int argc, char **argv)
   string line;
   vector<void *> openLibs;
   vector<AbstractInterp4Command *> commands;
-  vector<map<string,shared_ptr<AbstractMobileObj>>> mapMobileObjects;
+  map<string, shared_ptr<AbstractMobileObj>> mapMobileObjects;
 
   // Inicjalizacja połączenia z serwerem
   Scene scene;
@@ -85,13 +86,14 @@ int main(int argc, char **argv)
     }
 
     // Dodawanie obiektu do sceny
-    map<string, shared_ptr<AbstractMobileObj>> newObjectMap;
-    newObjectMap[cube.name] = make_shared<AbstractMobileObj>(new MobileObj(cube.name)) ;
-    mapMobileObjects.push_back(newObjectMap);
+    mapMobileObjects[cube.name] = make_shared<MobileObj>(cube.name);
   }
 
   scene.SetObjects(mapMobileObjects);
-
+  cout << "############################\n";
+  scene.PrintAllSceneObjects();
+  cout << "############################\n";
+  
   // wczytywanie poleceń z pliku do vectora
   while (getline(commandFile, line))
   {
