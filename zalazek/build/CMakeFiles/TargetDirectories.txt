@@ -1,0 +1,9 @@
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/build/CMakeFiles/cmds_interpreter.dir
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/build/CMakeFiles/edit_cache.dir
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/build/CMakeFiles/rebuild_cache.dir
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/build/plugin/CMakeFiles/Interp4Move.dir
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/build/plugin/CMakeFiles/Interp4Set.dir
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/build/plugin/CMakeFiles/Interp4Rotate.dir
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/build/plugin/CMakeFiles/Interp4Pause.dir
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/build/plugin/CMakeFiles/edit_cache.dir
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/build/plugin/CMakeFiles/rebuild_cache.dir

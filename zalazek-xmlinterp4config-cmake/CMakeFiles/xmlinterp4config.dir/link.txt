@@ -1,1 +1,0 @@
-/usr/bin/c++ -rdynamic CMakeFiles/xmlinterp4config.dir/src/main.cpp.o CMakeFiles/xmlinterp4config.dir/src/xmlinterp.cpp.o -o xmlinterp4config  -lxerces-c 

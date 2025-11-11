@@ -105,7 +105,12 @@ void XMLInterp4Config::ProcessCubeAttrs(const Attributes &rAttrs) {
     }
 
     _config.cubes.push_back(cube);
-    std::cout << "Loaded cube: " << cube.name << "\n";
+    std::cout << "Loaded cube: " << cube.name << std::endl
+    << "shift: " << stringToVecString(cube.shift)  << std::endl
+    << "scale: " << stringToVecString(cube.scale) << std::endl
+    << "rotXYZ: "<< stringToVecString(cube.rotXYZ)<< std::endl
+    << "trans_m: "<<stringToVecString(cube.trans_m) << std::endl
+    << "color_rgb: "<< stringToVecString(cube.color) << std::endl;
 }
 
 Configuration XMLInterp4Config::redConfigurationFromXML(const char * fileName){
@@ -221,11 +226,5 @@ bool ReadFile(const char* sFileName, Configuration &rConfig)
 }
 
 
-// int main (int argc, char* args[]) 
-// {
-//    Configuration   Config;
-
-//    if (!ReadFile("config/config.xml",Config)) return 1;
-// }
 
 

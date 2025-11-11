@@ -1,6 +1,0 @@
-var files_dup =
-[
-    [ "inc", "dir_bfccd401955b95cf8c75461437045ac0.html", "dir_bfccd401955b95cf8c75461437045ac0" ],
-    [ "res", "dir_75a9b3ef857d8d7b3c202d54f460dc2d.html", "dir_75a9b3ef857d8d7b3c202d54f460dc2d" ],
-    [ "src", "dir_68267d1309a1af8e8297ef4c3efbcdba.html", "dir_68267d1309a1af8e8297ef4c3efbcdba" ]
-];
