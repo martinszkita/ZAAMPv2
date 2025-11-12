@@ -96,7 +96,7 @@ bool Interp4Move::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstract
     return true;
   }
 
-  constexpr double kDegToRad = std::acos(-1.0) / 180.0;
+  const double kDegToRad = std::acos(-1.0) / 180.0;
   Vector3D orient_deg = pObj->GetRotXYZ_deg();
   const double pitch_rad = orient_deg[1] * kDegToRad;
   const double yaw_rad = orient_deg[2] * kDegToRad;

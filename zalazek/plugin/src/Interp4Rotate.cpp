@@ -101,7 +101,7 @@ bool Interp4Rotate::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstra
         return false;
     }
 
-    auto *pChannel = dynamic_cast<ComChannel *>(&rComChann);
+    ComChannel *pChannel = dynamic_cast<ComChannel *>(&rComChann);
     if (pChannel == nullptr)
     {
         std::cerr << GetCmdName() << " -- kanał komunikacyjny nie obsługuje wysyłania komend obrotu." << std::endl;
