@@ -19,7 +19,24 @@ void ComChannel::SendMoveCommand(const std::string &objectName, Vector3D trans_m
         std::cout << "Wysłano polecenie move na serwer! \n";
     }
 }
-void ComChannel::SendRotateCommand(const std::string &objectName, char axis, double angSpeed, double angDeg);
+void ComChannel::SendRotateCommand(const std::string &objectName, char axis, double angSpeed, double angDeg)
+{
+    int socket = GetSocket();
+    std::ostringstream oss;
+    oss << "Rotate Name=" << objectName
+        << " Axis=" << axis
+        << " AngSpeed_deg_s=" << angSpeed
+        << " Angle_deg=" << angDeg << "\n";
+
+    if (Send(socket, oss.str().c_str()) < 0)
+    {
+        std::cerr << "Error: Nie udalo sie wyslac komendy rotate na serwer!\n";
+    }
+    else
+    {
+        std::cout << "Wysłano polecenie rotate na serwer! \n";
+    }
+}
 void ComChannel::SendSetCommand(const std::string &objectName, Vector3D posXYZ, Vector3D RPYdeg);
 void ComChannel::SendPauseCommand(int pause_ms);
 
