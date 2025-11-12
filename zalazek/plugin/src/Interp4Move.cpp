@@ -93,7 +93,7 @@ bool Interp4Move::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstract
 
 void Interp4Move::PrintParams() const
 {
-  std::cout << "Move command parameters: " <<  endl
+  std::cout << "Move command parameters: " << endl
             << "robot name: " << getRobotName() << endl
             << "speed [m/s]" << getSpeed() << endl
             << "distance [m]: " << getDistance() << endl;

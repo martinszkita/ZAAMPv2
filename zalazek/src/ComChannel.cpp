@@ -1,22 +1,40 @@
 #include "ComChannel.hh"
 #include <iostream>
-#include <unistd.h>  // Dla funkcji close()
+#include <unistd.h> // Dla funkcji close()
+#include "Sender.hh"
+#include <sstream>
 
+void ComChannel::SendMoveCommand(const std::string &objectName, Vector3D trans_m)
+{
+    int socket = GetSocket();
+    ostringstream oss;
+    oss << "UpdateObj Name=" << objectName
+        << " Trans_m=" << trans_m << "\n";
 
-void ComChannel::SendMoveCommand(const std::string& objectName, double speed, double distance) {
-        std::cout << "Wysyłanie komendy ruchu dla " << objectName
-                  << " z prędkością " << speed << " i odległością " << distance << std::endl;
+    if (Send(socket, oss.str().c_str()) < 0)
+    {
+        std::cerr << "Error: Nie udalo sie wyslac na serwer!\n";
+    }
+    else{
+        std::cout << "Wysłano polecenie move na serwer! \n";
+    }
 }
+void ComChannel::SendRotateCommand(const std::string &objectName, char axis, double angSpeed, double angDeg);
+void ComChannel::SendSetCommand(const std::string &objectName, Vector3D posXYZ, Vector3D RPYdeg);
+void ComChannel::SendPauseCommand(int pause_ms);
 
-bool ComChannel::Init(int Socket){
-     // Sprawdzenie poprawności deskryptora
-    if (Socket < 0) {
+bool ComChannel::Init(int Socket)
+{
+    // Sprawdzenie poprawności deskryptora
+    if (Socket < 0)
+    {
         std::cerr << "Błędny deskryptor połączenia: " << Socket << std::endl;
         return false;
     }
 
     // Zamknięcie istniejącego deskryptora, jeśli jest ustawiony
-    if (socket != -1) {
+    if (socket != -1)
+    {
         close(socket);
     }
 
@@ -26,18 +44,22 @@ bool ComChannel::Init(int Socket){
     return true;
 }
 
-int ComChannel::GetSocket() const{
+int ComChannel::GetSocket() const
+{
     return socket;
 }
 
-void ComChannel::LockAccess(){
+void ComChannel::LockAccess()
+{
     access_mutex.lock();
 }
 
-void ComChannel::UnlockAccess(){
+void ComChannel::UnlockAccess()
+{
     access_mutex.unlock();
 }
 
-std::mutex & ComChannel::UseGuard() {
+std::mutex &ComChannel::UseGuard()
+{
     return access_mutex;
 }

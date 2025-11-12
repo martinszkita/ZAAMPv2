@@ -162,7 +162,7 @@ int main(int argc, char **argv)
 
   commandFile.close();
 
-
+  std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(3000)));
   cout << "poczatek wysylania komend do serwera! \n";
   // wysylanie polecenia do serwera
   for (const auto &cmd : commands)
