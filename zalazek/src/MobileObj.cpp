@@ -1,6 +1,8 @@
 #include "MobileObj.hh"
 #include "Vector3D.hh"
 
+#include <sstream>
+
 const Vector3D &MobileObj::GetPosition_m() const
 {
     return _position;
@@ -13,12 +15,12 @@ void MobileObj::SetPosition_m(const Vector3D &rPos)
 
 const Vector3D &MobileObj::GetRotXYZ_deg() const
 {
-    return _position;
+    return _RotXYZ_deg;
 }
 
-void MobileObj::SetRotXYZ_deg(const Vector3D &rPos)
+void MobileObj::SetRotXYZ_deg(const Vector3D &rRot)
 {
-    _position = rPos;
+    _RotXYZ_deg = rRot;
 }
 
 const std::string &MobileObj::GetName() const
@@ -65,5 +67,14 @@ int MobileObj::GetAxisIndex(char axis)
 
 std::string MobileObj::GetStateDesc() const
 {
-    return _Cmd4StatDesc[_StateIdx];
+    if (_Cmd4StatDesc != nullptr)
+    {
+        return _Cmd4StatDesc[_StateIdx];
+    }
+
+    std::ostringstream oss;
+    oss << "UpdateObj Name=" << _name
+        << " Trans_m=(" << _position[0] << "," << _position[1] << "," << _position[2] << ")"
+        << " RotXYZ_deg=(" << _RotXYZ_deg[0] << "," << _RotXYZ_deg[1] << "," << _RotXYZ_deg[2] << ")\n";
+    return oss.str();
 }
