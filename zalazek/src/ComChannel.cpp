@@ -30,15 +30,15 @@ void ComChannel::SendRotateCommand(const std::string &objectName, char axis, dou
 
     if (Send(socket, oss.str().c_str()) < 0)
     {
-        std::cerr << "Error: Nie udalo sie wyslac komendy rotate na serwer!\n";
+        std::cerr << "SendRotateCommand: Error: Nie udalo sie wyslac komendy rotate na serwer!\n";
     }
     else
     {
-        std::cout << "Wysłano polecenie rotate na serwer! \n";
+        std::cout << "SendRotateCommand: Wysłano polecenie rotate na serwer! \n";
     }
 }
-void ComChannel::SendSetCommand(const std::string &objectName, Vector3D posXYZ, Vector3D RPYdeg);
-void ComChannel::SendPauseCommand(int pause_ms);
+// void ComChannel::SendSetCommand(const std::string &objectName, Vector3D posXYZ, Vector3D RPYdeg);
+// void ComChannel::SendPauseCommand(int pause_ms);
 
 bool ComChannel::Init(int Socket)
 {

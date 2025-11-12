@@ -16,6 +16,9 @@
 #include <memory>
 #include "MobileObj.hh"
 #include "Interp4Move.hh"
+#include "Interp4Rotate.hh"
+#include "Interp4Set.hh"
+#include "Interp4Pause.hh"
 
 using namespace std;
 
@@ -91,7 +94,7 @@ int main(int argc, char **argv)
     }
     else
     {
-      std::cout << "Sukces: udalo sie wysłać na serwer: "<< oss.str() << std::endl;
+      std::cout << "Sukces: udalo sie wysłać na serwer: " << oss.str() << std::endl;
     }
 
     mapMobileObjects[cube.name] = make_shared<MobileObj>(cube.name);
@@ -121,7 +124,7 @@ int main(int argc, char **argv)
 
     if (!commandNameOk)
     {
-      cerr << "bledna nazwa komendy: "<< commandName<< " w pliku: " << line << " " << commandFileName << endl;
+      cerr << "bledna nazwa komendy: " << commandName << " w pliku: " << line << " " << commandFileName << endl;
       return 1;
     }
 
@@ -164,27 +167,23 @@ int main(int argc, char **argv)
 
   std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(3000)));
   cout << "poczatek wysylania komend do serwera! \n";
+  
   // wysylanie polecenia do serwera
   for (const auto &cmd : commands)
   {
     if (std::strcmp(cmd->GetCmdName(), "Move") == 0)
     {
-      cout << "wykryłem komende move! \n";
-      if (auto *move = dynamic_cast<Interp4Move *>(cmd.get()))
-      {
-        comChannel.SendMoveCommand(
-            move->getRobotName(),
-            move->getSpeed(),
-            move->getDistance());
-      }
-      else{
-        cout << "inna komenda niz move, skipuje.";
-        continue;
-      }
+      auto *move = dynamic_cast<Interp4Move *>(cmd.get());
+      std::string robotName = move->getRobotName();
+      move->ExecCmd(scene, robotName.c_str(), comChannel);
+      delete move;
     }
-    else{
-      cerr << "error w wysyłaniu polecen do serwera! \n";
-      return 1;
+    else if (std::strcmp(cmd->GetCmdName(), "Rotate") == 0)
+    {
+      auto *rotate = dynamic_cast<Interp4Rotate *>(cmd.get());
+      std::string robotName = rotate->GetRobotName();
+      rotate->ExecCmd(scene, robotName.c_str(), comChannel);
+      delete rotate;
     }
   }
 
