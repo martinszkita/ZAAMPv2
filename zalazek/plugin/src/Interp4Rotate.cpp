@@ -1,12 +1,15 @@
 #include "Interp4Rotate.hh"
-#include <thread>
+
+#include <algorithm>
 #include <chrono>
+#include <cmath>
+#include <cstddef>
 #include <iostream>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <sstream>
-#include "Sender.hh"
-#include "AbstractComChannel.hh"
+#include <limits>
+#include <thread>
+
+#include "AccessControl.hh"
+#include "ComChannel.hh"
 
 extern "C"
 {
@@ -87,18 +90,27 @@ bool Interp4Rotate::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstra
 
     if (pObj == nullptr)
     {
-        std::cerr << GetCmdName() << " -- Object not found: " << sMobObjName << std::endl;
+        std::cerr << GetCmdName() << " -- nie znaleziono obiektu o nazwie: " << sMobObjName << std::endl;
         return false;
     }
 
-    double dt = 50;                                           // Step duration in milliseconds
-    double deltaAngle = GetAngularVelocity() * (dt / 1000.0); // Angular change per step
-    double remainingAngle = GetAngle();                       // Total angle to rotate
-    Vector3D currentOrientation = pObj->GetRotXYZ_deg();
-    unsigned int axisIndex;
+    auto *pAccess = dynamic_cast<AccessControl *>(&rScn);
+    if (pAccess == nullptr)
+    {
+        std::cerr << GetCmdName() << " -- scena nie udostępnia synchronizacji dostępu." << std::endl;
+        return false;
+    }
 
-    // Determine the axis index based on the rotation axis
-    switch (GetAxis())
+    auto *pChannel = dynamic_cast<ComChannel *>(&rComChann);
+    if (pChannel == nullptr)
+    {
+        std::cerr << GetCmdName() << " -- kanał komunikacyjny nie obsługuje wysyłania komend obrotu." << std::endl;
+        return false;
+    }
+
+    const char axis = GetAxis();
+    std::size_t axisIndex = 0;
+    switch (axis)
     {
     case 'X':
         axisIndex = 0;
@@ -110,52 +122,45 @@ bool Interp4Rotate::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstra
         axisIndex = 2;
         break;
     default:
-        std::cerr << "Rotation axis error!" << std::endl;
+        std::cerr << GetCmdName() << " -- nieprawidłowa oś obrotu: " << axis << std::endl;
         return false;
     }
 
-    // Perform rotation in steps
-    while (std::abs(remainingAngle) > std::abs(deltaAngle / 2.0))
+    const double total_angle_deg = GetAngle();
+    const double angle_abs = std::abs(total_angle_deg);
+    if (angle_abs <= std::numeric_limits<double>::epsilon())
     {
-        currentOrientation[axisIndex] += deltaAngle;
-        remainingAngle -= deltaAngle;
-
-        // Update the object's orientation in the scene
-        pObj->SetRotXYZ_deg(currentOrientation);
-
-        // Create the update command
-        std::ostringstream oss;
-        oss << "UpdateObj Name=" << sMobObjName
-            << " RotXYZ_deg=(" << currentOrientation[0] << ", "
-            << currentOrientation[1] << ", "
-            << currentOrientation[2] << ")\n";
-
-        // Send the command to the server
-        // std::string command = oss.str();
-        // if (!rComChann.Send(command.c_str())) {
-        //     std::cerr << "Failed to send command to server: " << command << std::endl;
-        //     return false;
-        // }
-
-        // // Delay for smooth animation
-        // std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(dt)));
+        return true;
     }
 
-    // Final adjustment for the remaining angle (to avoid precision errors)
-    currentOrientation[axisIndex] += remainingAngle;
-    pObj->SetRotXYZ_deg(currentOrientation);
+    const double commanded_angular_velocity = GetAngularVelocity();
+    const double angular_speed_deg_s = std::abs(commanded_angular_velocity);
 
-    // Send the final state update
-    std::ostringstream finalOss;
-    finalOss << "UpdateObj Name=" << sMobObjName
-             << " RotXYZ_deg=(" << currentOrientation[0] << ", "
-             << currentOrientation[1] << ", "
-             << currentOrientation[2] << ")\n";
+    constexpr double kStepDuration_s = 0.05; // 50 ms
+    const double step_angle = angular_speed_deg_s > std::numeric_limits<double>::epsilon() ? angular_speed_deg_s * kStepDuration_s : angle_abs;
+    const int steps = std::max(1, static_cast<int>(std::ceil(angle_abs / step_angle)));
+    const double single_step_deg = total_angle_deg / static_cast<double>(steps);
+    const double total_time_s = angular_speed_deg_s > std::numeric_limits<double>::epsilon() ? angle_abs / angular_speed_deg_s : 0.0;
+    const double step_time_s = steps > 0 ? total_time_s / static_cast<double>(steps) : 0.0;
 
-    // if (!rComChann.Send(finalOss.str().c_str())) {
-    //     std::cerr << "Failed to send final command to server: " << finalOss.str() << std::endl;
-    //     return false;
-    // }
+    Vector3D orientation = pObj->GetRotXYZ_deg();
+
+    for (int i = 0; i < steps; ++i)
+    {
+        orientation[axisIndex] += single_step_deg;
+
+        pAccess->LockAccess();
+        pObj->SetRotXYZ_deg(orientation);
+        pAccess->MarkChange();
+        pAccess->UnlockAccess();
+
+        pChannel->SendRotateCommand(pObj->GetName(), axis, commanded_angular_velocity, single_step_deg);
+
+        if (step_time_s > std::numeric_limits<double>::epsilon())
+        {
+            std::this_thread::sleep_for(std::chrono::duration<double>(step_time_s));
+        }
+    }
 
     return true;
 }
