@@ -1,7 +1,12 @@
+#include <algorithm>
+#include <chrono>
+#include <cmath>
 #include <iostream>
+#include <limits>
+#include <thread>
+#include "AccessControl.hh"
+#include "ComChannel.hh"
 #include "Interp4Move.hh"
-
-#define DEG_TO_RAD(deg) 180 / M_PI
 
 using std::cout;
 using std::endl;
@@ -64,29 +69,67 @@ bool Interp4Move::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstract
 
   if (pObj == nullptr)
   {
-    std::cerr << GetCmdName() << "nie znaleziono obiektu o nazwie: " << sMobObjName << endl;
+    std::cerr << GetCmdName() << " -- nie znaleziono obiektu o nazwie: " << sMobObjName << endl;
     return false;
   }
 
-  // przeliczenie stopni na radiany
-  double roll_rad = DEG_TO_RAD(GetAng_Roll_deg());
-  double pitch_rad = DEG_TO_RAD(GetAng_Pitch_deg());
-  double yaw_rad = DEG_TO_RAD(GetAng_Yaw_deg());
+  auto *pAccess = dynamic_cast<AccessControl *>(&rScn);
+  if (pAccess == nullptr)
+  {
+    std::cerr << GetCmdName() << " -- scena nie udostępnia synchronizacji dostępu." << std::endl;
+    return false;
+  }
 
-  double distance_m = getDistance();
-  double speed_m_s = getSpeed();
+  auto *pChannel = dynamic_cast<ComChannel *>(&rComChann);
+  if (pChannel == nullptr)
+  {
+    std::cerr << GetCmdName() << " -- kanał komunikacyjny nie obsługuje wysyłania komend ruchu." << std::endl;
+    return false;
+  }
 
-  // wektor przesunięcia, zakładamy oś X to prosto
-  Vector3D VRot = Vector3D({cos(yaw_rad) * cos(pitch_rad),
-                            sin(yaw_rad) * cos(pitch_rad),
-                            -sin(pitch_rad)});
+  const double distance_m = getDistance();
+  const double distance_abs = std::abs(distance_m);
+  const double speed_m_s = std::abs(getSpeed());
 
-  // obliczenie nowej pozycji
-  Vector3D VTrans = VRot * distance_m;
-  Vector3D VCurrPos = pObj->GetPosition_m();
-  VCurrPos += VTrans;
+  if (distance_abs <= std::numeric_limits<double>::epsilon())
+  {
+    return true;
+  }
 
-  pObj->SetPosition_m(VCurrPos);
+  constexpr double kDegToRad = std::acos(-1.0) / 180.0;
+  Vector3D orient_deg = pObj->GetRotXYZ_deg();
+  const double pitch_rad = orient_deg[1] * kDegToRad;
+  const double yaw_rad = orient_deg[2] * kDegToRad;
+
+  const Vector3D direction({std::cos(yaw_rad) * std::cos(pitch_rad),
+                            std::sin(yaw_rad) * std::cos(pitch_rad),
+                            -std::sin(pitch_rad)});
+
+  constexpr double kStepDuration_s = 0.05; // 50 ms
+  const double step_length = speed_m_s > std::numeric_limits<double>::epsilon() ? speed_m_s * kStepDuration_s : distance_abs;
+  const int steps = std::max(1, static_cast<int>(std::ceil(distance_abs / step_length)));
+  const Vector3D single_step = direction * (distance_m / static_cast<double>(steps));
+  const double total_time_s = speed_m_s > std::numeric_limits<double>::epsilon() ? distance_abs / speed_m_s : 0.0;
+  const double step_time_s = steps > 0 ? total_time_s / static_cast<double>(steps) : 0.0;
+
+  Vector3D current_pos = pObj->GetPosition_m();
+
+  for (int i = 0; i < steps; ++i)
+  {
+    current_pos += single_step;
+
+    pAccess->LockAccess();
+    pObj->SetPosition_m(current_pos);
+    pAccess->MarkChange();
+    pAccess->UnlockAccess();
+
+    pChannel->SendMoveCommand(pObj->GetName(), single_step);
+
+    if (step_time_s > std::numeric_limits<double>::epsilon())
+    {
+      std::this_thread::sleep_for(std::chrono::duration<double>(step_time_s));
+    }
+  }
 
   return true;
 }
