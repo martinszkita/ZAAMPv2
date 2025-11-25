@@ -91,10 +91,9 @@ public:
      * \param[in] speed - Prędkość ruchu obiektu.
      * \param[in] distance - Odległość, jaką ma pokonać obiekt.
      */
-    void SendMoveCommand(const std::string& objectName, Vector3D trans_m);
-    void SendRotateCommand(const std::string& objectName, char axis, double angSpeed, double angDeg);
-    void SendSetCommand(const std::string& objectName, Vector3D posXYZ, Vector3D RPYdeg);
-    void SendPauseCommand(int pause_ms);
+    bool SendMoveCommand(const std::string& objectName, Vector3D trans_m);
+    bool SendRotateCommand(const std::string& objectName, char axis, double angSpeed, double angDeg);
+    bool SendSetCommand(const std::string& objectName, Vector3D posXYZ, Vector3D RPYdeg);
 };
 
 #endif

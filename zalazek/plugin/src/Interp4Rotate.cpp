@@ -136,7 +136,7 @@ bool Interp4Rotate::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstra
     const double commanded_angular_velocity = GetAngularVelocity();
     const double angular_speed_deg_s = std::abs(commanded_angular_velocity);
 
-    constexpr double kStepDuration_s = 0.05; // 50 ms
+    const double kStepDuration_s = 0.05; // 50 ms
     const double step_angle = angular_speed_deg_s > std::numeric_limits<double>::epsilon() ? angular_speed_deg_s * kStepDuration_s : angle_abs;
     const int steps = std::max(1, static_cast<int>(std::ceil(angle_abs / step_angle)));
     const double single_step_deg = total_angle_deg / static_cast<double>(steps);
@@ -154,7 +154,10 @@ bool Interp4Rotate::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstra
         pAccess->MarkChange();
         pAccess->UnlockAccess();
 
-        pChannel->SendRotateCommand(pObj->GetName(), axis, commanded_angular_velocity, single_step_deg);
+        if (!pChannel->SendRotateCommand(pObj->GetName(), axis, commanded_angular_velocity, single_step_deg)){
+            std::cerr << "Interp4Rotate::ExecCmd -> SendRotateCommand error!" << std::endl;
+            return false;
+        }
 
         if (step_time_s > std::numeric_limits<double>::epsilon())
         {

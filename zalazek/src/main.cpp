@@ -22,6 +22,8 @@
 
 using namespace std;
 
+// zrobić kolekcję wtyczek (MAP)
+
 int main(int argc, char **argv)
 {
   // sprawdzenie czy liczba parametrów jest poprawna
@@ -40,13 +42,13 @@ int main(int argc, char **argv)
 
   if (!commandFile.is_open())
   {
-    cerr << "file opening error" << endl;
+    cerr << "command file opening error" << endl;
     return 1;
   }
 
   string line;
-  vector<void *> openLibs;
-  vector<std::unique_ptr<AbstractInterp4Command>> commands;
+  vector<void *> openLibs(4);
+  vector<unique_ptr<AbstractInterp4Command>> commands;
   map<string, shared_ptr<AbstractMobileObj>> mapMobileObjects;
 
   // Inicjalizacja połączenia z serwerem
@@ -167,24 +169,33 @@ int main(int argc, char **argv)
 
   std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(3000)));
   cout << "poczatek wysylania komend do serwera! \n";
-  
+
   // wysylanie polecenia do serwera
   for (const auto &cmd : commands)
   {
-    if (std::strcmp(cmd->GetCmdName(), "Move") == 0)
+    std::string name = cmd->GetCmdName();
+
+    if (std::strcmp(name.c_str(), "Move") == 0)
     {
-      auto *move = dynamic_cast<Interp4Move *>(cmd.get());
+      Interp4Move *move = dynamic_cast<Interp4Move *>(cmd.get());
       std::string robotName = move->getRobotName();
       move->ExecCmd(scene, robotName.c_str(), comChannel);
       delete move;
     }
-    else if (std::strcmp(cmd->GetCmdName(), "Rotate") == 0)
+    else if (std::strcmp(name.c_str(), "Rotate") == 0)
     {
-      auto *rotate = dynamic_cast<Interp4Rotate *>(cmd.get());
+      Interp4Rotate *rotate = dynamic_cast<Interp4Rotate *>(cmd.get());
       std::string robotName = rotate->GetRobotName();
       rotate->ExecCmd(scene, robotName.c_str(), comChannel);
       delete rotate;
     }
+    // else if (std::strcmp(name.c_str(), "Set") == 0)
+    // {
+    //   auto *set = dynamic_cast<Interp4Set *>(cmd.get());
+    //   std::string robotName = set->GetRobotName();
+    //   set->ExecCmd(scene, robotName.c_str(), comChannel);
+    //   delete set;
+    // }
   }
 
   for (const auto &lib : openLibs)
