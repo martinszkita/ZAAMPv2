@@ -19,6 +19,8 @@
 #include "Interp4Rotate.hh"
 #include "Interp4Set.hh"
 #include "Interp4Pause.hh"
+#include <optional>
+#include <vector>
 
 #define INTERP4(commandName) Interp4#commandName
 
@@ -29,13 +31,13 @@ using namespace std;
 int main(int argc, char **argv)
 {
   // sprawdzenie czy liczba parametrów jest poprawna
-  if (argc != 3)
+  if (argc < 2 || argc > 3)
   {
-    cerr << "Usage: " << argv[0] << " <config_file.xml> <instructions_file.xml>" << endl;
+    cerr << "Usage: " << argv[0] << " <config_file.xml> [commands_file]" << endl;
     return 1;
   }
   const char *configFileName = argv[1];
-  const char *commandFileName = argv[2];
+  const std::string commandFileName = argc == 3 ? argv[2] : "commands";
 
   Configuration config = XMLInterp4Config::redConfigurationFromXML(configFileName);
 
@@ -107,6 +109,12 @@ int main(int argc, char **argv)
 
   for (const auto &plugin : config.plugins)
   {
+    if (loadedLibraries.find(plugin) != loadedLibraries.end())
+    {
+      cout << "Biblioteka " << plugin << " została już załadowana, pomijam ponowne ładowanie." << endl;
+      continue;
+    }
+
     void *pluginHangle = dlopen(plugin.c_str(), RTLD_LAZY);
 
     if (!pluginHangle)
@@ -124,7 +132,7 @@ int main(int argc, char **argv)
     // tworzenie prototypow interpów
     AbstractInterp4Command *(*pCreateCmd)(void);
 
-    pCreateCmd = (AbstractInterp4Command * (*)()) dlsym(pluginHangle, "createCmd");
+    pCreateCmd = (AbstractInterp4Command * (*)()) dlsym(pluginHangle, "CreateCmd");
 
     if (!pCreateCmd)
     {
@@ -144,66 +152,90 @@ int main(int argc, char **argv)
     mInterps.insert({cmdName, pCreateCmd});
   }
 
-  // wczytywanie poleceń z pliku do vectora
+  std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(3000)));
+  cout << "poczatek wysylania komend do serwera! \n";
+
+  // wczytywanie poleceń z pliku i natychmiastowe ich wykonywanie
   string line;
 
   while (getline(commandFile, line))
   {
+    if (line.empty())
+    {
+      continue;
+    }
+
     istringstream iss(line);
     string commandName;
 
     iss >> commandName;
 
+    if (commandName.empty())
+    {
+      continue;
+    }
+
     auto it = mInterps.find(commandName);
-    if (it == mInterps.end()){
+    if (it == mInterps.end())
+    {
       cerr << "nie znaleziono interpretera dla polecenia : " << commandName << endl;
       continue;
     }
 
-    AbstractInterp4Command * interp = it->second();
+    std::unique_ptr<AbstractInterp4Command> interp(it->second());
 
+    if (!interp)
+    {
+      cerr << "nie udało się utworzyć interpretera polecenia: " << commandName << endl;
+      continue;
+    }
 
+    if (!interp->ReadParams(iss))
+    {
+      cerr << "Błąd wczytywania parametrów dla polecenia: " << commandName << endl;
+      continue;
+    }
 
-    // // wskaznik na funkcje ktora zwraca AbstractInterp4Command * i nie przyjmuje argumentow
-    // pCreateCmd = reinterpret_cast<AbstractInterp4Command *(*)()>(pFun);
-    // std::unique_ptr<AbstractInterp4Command> pCmd(pCreateCmd());
+    std::string name = interp->GetCmdName();
+    std::optional<std::string> robotName;
 
-    // pCmd->ReadParams(iss);
-    // cout << endl;
+    if (auto move = dynamic_cast<Interp4Move *>(interp.get()))
+    {
+      robotName = move->getRobotName();
+    }
+    else if (auto rotate = dynamic_cast<Interp4Rotate *>(interp.get()))
+    {
+      robotName = rotate->GetRobotName();
+    }
+    else if (auto set = dynamic_cast<Interp4Set *>(interp.get()))
+    {
+      robotName = set->GetRobotName();
+    }
+    else if (auto pause = dynamic_cast<Interp4Pause *>(interp.get()))
+    {
+      robotName = pause->GetRobotName();
+    }
 
-    // cout << "dostalem komende: " << pCmd->GetCmdName() << "\n";
-    // // pCmd->PrintParams();
-    // cout << endl;
+    if (!robotName.has_value())
+    {
+      if (!scene.GetObjects().empty())
+      {
+        robotName = scene.GetObjects().begin()->first;
+      }
+      else
+      {
+        cerr << "Brak obiektów na scenie do wykonania polecenia: " << name << endl;
+        continue;
+      }
+    }
 
-    // // exec
-    // // delete cmd
+    if (!interp->ExecCmd(scene, robotName->c_str(), comChannel))
+    {
+      cerr << "Wykonanie polecenia " << name << " nie powiodło się" << endl;
+    }
   }
 
   commandFile.close();
-
-  std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<int>(3000)));
-  cout << "poczatek wysylania komend do serwera! \n";
-
-  // wysylanie polecenia do serwera
-  for (const auto &cmd : commands)
-  {
-    std::string name = cmd->GetCmdName();
-
-    if (std::strcmp(name.c_str(), "Move") == 0)
-    {
-      Interp4Move *move = dynamic_cast<Interp4Move *>(cmd.get());
-      std::string robotName = move->getRobotName();
-      move->ExecCmd(scene, robotName.c_str(), comChannel);
-      delete move;
-    }
-    else if (std::strcmp(name.c_str(), "Rotate") == 0)
-    {
-      Interp4Rotate *rotate = dynamic_cast<Interp4Rotate *>(cmd.get());
-      std::string robotName = rotate->GetRobotName();
-      rotate->ExecCmd(scene, robotName.c_str(), comChannel);
-      delete rotate;
-    }
-  }
 
   ClientSender.CancelCountinueLooping();
   Thread4Sending.join();
