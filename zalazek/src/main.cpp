@@ -21,10 +21,45 @@
 #include "Interp4Pause.hh"
 #include <optional>
 #include <vector>
+#include <filesystem>
+#include <cstdlib>
 
 #define INTERP4(commandName) Interp4#commandName
 
 using namespace std;
+
+namespace {
+
+std::string QuotePath(const std::filesystem::path &path)
+{
+  std::ostringstream oss;
+  oss << '"' << path.string() << '"';
+  return oss.str();
+}
+
+bool PreprocessCommandsFile(const std::string &sourceFile,
+                            std::filesystem::path &outputFile)
+{
+  outputFile = std::filesystem::temp_directory_path() /
+               (std::filesystem::path(sourceFile).filename().string() + ".pp");
+
+  std::ostringstream command;
+  command << "cpp -P -nostdinc -undef "
+          << QuotePath(sourceFile) << ' '
+          << QuotePath(outputFile);
+
+  const int result = std::system(command.str().c_str());
+
+  if (result != 0)
+  {
+    std::cerr << "Nie udało się przetworzyć pliku poleceń przez preprocesor." << std::endl;
+    return false;
+  }
+
+  return true;
+}
+
+}
 
 // zrobić kolekcję wtyczek (MAP)
 
@@ -39,10 +74,17 @@ int main(int argc, char **argv)
   const char *configFileName = argv[1];
   const std::string commandFileName = argc == 3 ? argv[2] : "commands";
 
+  std::filesystem::path processedCommands;
+
+  if (!PreprocessCommandsFile(commandFileName, processedCommands))
+  {
+    return 1;
+  }
+
   Configuration config = XMLInterp4Config::redConfigurationFromXML(configFileName);
 
   ifstream commandFile;
-  commandFile.open(commandFileName);
+  commandFile.open(processedCommands);
 
   if (!commandFile.is_open())
   {
