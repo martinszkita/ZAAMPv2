@@ -62,7 +62,6 @@ bool ComChannel::SendSetCommand(const std::string &objectName, Vector3D posXYZ, 
     }
 }
 
-
 bool ComChannel::Init(int Socket)
 {
     // Sprawdzenie poprawności deskryptora

@@ -64,14 +64,8 @@ bool Interp4Set::ExecCmd(AbstractScene &rScn, const char *sMobObjName, AbstractC
 
     if (pObj == nullptr)
     {
-        std::cerr << GetCmdName() << "  -- nie znaleziono obiektu o nazwie: " << sMobObjName << std::endl;
-        std::cout <<" dodaje obiekt "<< sMobObjName <<" do sceny\n";
-        // return false;
-        AbstractMobileObj * mobileObj = dynamic_cast<MobileObj*> (new MobileObj(sMobObjName));
-        if (mobileObj == NULL){
-            std::cerr << "interp4set.execCMD -> nie udalo sie dodac obiektu do sceny!\n";
-            return false;
-        }
+        std::cerr << GetCmdName() << " nie znaleziono obiektu o nazwie: " << sMobObjName << std::endl;
+        return false;
     }
 
     auto *pAccess = dynamic_cast<AccessControl *>(&rScn);
@@ -92,7 +86,6 @@ bool Interp4Set::ExecCmd(AbstractScene &rScn, const char *sMobObjName, AbstractC
     pObj->SetRotXYZ_deg(rpy);
 
     pChannel->SendSetCommand(sMobObjName, pos, rpy);
-    
 
     return true;
 }

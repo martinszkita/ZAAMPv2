@@ -37,11 +37,12 @@ std::string QuotePath(const std::filesystem::path &path)
   return oss.str();
 }
 
+// tworzy przetworzony *.pp przez preprocesor plik z komendami w katalogu nieprzetworzonego pliku
 bool PreprocessCommandsFile(const std::string &sourceFile,
                             std::filesystem::path &outputFile)
 {
-  outputFile = std::filesystem::temp_directory_path() /
-               (std::filesystem::path(sourceFile).filename().string() + ".pp");
+  outputFile =  std::filesystem::path(sourceFile).parent_path()/
+    (std::filesystem::path(sourceFile).filename().string() + ".pp");
 
   std::ostringstream command;
   command << "cpp -P -nostdinc -undef "
@@ -60,8 +61,6 @@ bool PreprocessCommandsFile(const std::string &sourceFile,
 }
 
 }
-
-// zrobić kolekcję wtyczek (MAP)
 
 int main(int argc, char **argv)
 {
@@ -91,7 +90,9 @@ int main(int argc, char **argv)
     cerr << "command file opening error" << endl;
     return 1;
   }
-  map<string, void *> loadedLibraries;
+
+
+  map<string, void *> mLoadedLibraries;
   map<string, AbstractInterp4Command *(*)()> mInterps;
   map<string, shared_ptr<AbstractMobileObj>> mMobileObjects;
 
@@ -151,7 +152,7 @@ int main(int argc, char **argv)
 
   for (const auto &plugin : config.plugins)
   {
-    if (loadedLibraries.find(plugin) != loadedLibraries.end())
+    if (mLoadedLibraries.find(plugin) != mLoadedLibraries.end())
     {
       cout << "Biblioteka " << plugin << " została już załadowana, pomijam ponowne ładowanie." << endl;
       continue;
@@ -168,8 +169,8 @@ int main(int argc, char **argv)
 
     cout << "Zaladowalem biblioteke: " << plugin << endl;
 
-    // ladowanie bibliotek z comfig.xml i dodawanie do mapy
-    loadedLibraries.insert({plugin, pluginHangle});
+    // ladowanie bibliotek z config.xml i dodawanie do mapy
+    mLoadedLibraries.insert({plugin, pluginHangle});
 
     // tworzenie prototypow interpów
     AbstractInterp4Command *(*pCreateCmd)(void);
@@ -239,7 +240,7 @@ int main(int argc, char **argv)
     }
 
     std::string name = interp->GetCmdName();
-    std::optional<std::string> robotName;
+    std::string robotName;
 
     if (auto move = dynamic_cast<Interp4Move *>(interp.get()))
     {
@@ -258,27 +259,13 @@ int main(int argc, char **argv)
       robotName = pause->GetRobotName();
     }
 
-    if (!robotName.has_value())
-    {
-      if (!scene.GetObjects().empty())
-      {
-        robotName = scene.GetObjects().begin()->first;
-      }
-      else
-      {
-        cerr << "Brak obiektów na scenie do wykonania polecenia: " << name << endl;
-        continue;
-      }
-    }
-
-    if (!interp->ExecCmd(scene, robotName->c_str(), comChannel))
+    if (!interp->ExecCmd(scene, robotName.c_str(), comChannel))
     {
       cerr << "Wykonanie polecenia " << name << " nie powiodło się" << endl;
     }
   }
 
   commandFile.close();
-
   ClientSender.CancelCountinueLooping();
   Thread4Sending.join();
   close(Socket4Sending);

@@ -1,4 +1,4 @@
-#define ROTATE_SPEED 30
+#define ROTATE_SPEED 300
 /*
 * Przykªadowy zestaw polece«
 */
