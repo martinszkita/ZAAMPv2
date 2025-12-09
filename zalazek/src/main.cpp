@@ -20,6 +20,8 @@
 #include "Interp4Set.hh"
 #include "Interp4Pause.hh"
 
+#define INTERP4(commandName) Interp4#commandName
+
 using namespace std;
 
 // zrobić kolekcję wtyczek (MAP)
@@ -45,11 +47,9 @@ int main(int argc, char **argv)
     cerr << "command file opening error" << endl;
     return 1;
   }
-
-  string line;
-  vector<void *> openLibs(4);
-  vector<unique_ptr<AbstractInterp4Command>> commands;
-  map<string, shared_ptr<AbstractMobileObj>> mapMobileObjects;
+  map<string, void *> loadedLibraries;
+  map<string, AbstractInterp4Command *(*)()> mInterps;
+  map<string, shared_ptr<AbstractMobileObj>> mMobileObjects;
 
   // Inicjalizacja połączenia z serwerem
   Scene scene;
@@ -99,70 +99,84 @@ int main(int argc, char **argv)
       std::cout << "Sukces: udalo sie wysłać na serwer: " << oss.str() << std::endl;
     }
 
-    mapMobileObjects[cube.name] = make_shared<MobileObj>(cube.name);
+    mMobileObjects[cube.name] = make_shared<MobileObj>(cube.name);
   }
 
   // Dodawanie obiektów do sceny
-  scene.SetObjects(mapMobileObjects);
+  scene.SetObjects(mMobileObjects);
+
+  for (const auto &plugin : config.plugins)
+  {
+    void *pluginHangle = dlopen(plugin.c_str(), RTLD_LAZY);
+
+    if (!pluginHangle)
+    {
+      cerr << "!!! Brak biblioteki: " << plugin << endl;
+      cerr << dlerror() << endl;
+      return 1;
+    }
+
+    cout << "Zaladowalem biblioteke: " << plugin << endl;
+
+    // ladowanie bibliotek z comfig.xml i dodawanie do mapy
+    loadedLibraries.insert({plugin, pluginHangle});
+
+    // tworzenie prototypow interpów
+    AbstractInterp4Command *(*pCreateCmd)(void);
+
+    pCreateCmd = (AbstractInterp4Command * (*)()) dlsym(pluginHangle, "createCmd");
+
+    if (!pCreateCmd)
+    {
+      std::cerr << "Brak funkcji CreateCmd w pluginie!" << std::endl;
+      return 1;
+    }
+
+    AbstractInterp4Command *cmd = pCreateCmd();
+
+    if (!cmd)
+    {
+      std::cerr << "CreateCmd zwróciło NULL" << std::endl;
+      return 1;
+    }
+
+    string cmdName = cmd->GetCmdName();
+    mInterps.insert({cmdName, pCreateCmd});
+  }
 
   // wczytywanie poleceń z pliku do vectora
+  string line;
+
   while (getline(commandFile, line))
   {
     istringstream iss(line);
     string commandName;
 
-    iss >> commandName; // pierwsze slowo w linii to nazwa komendy
+    iss >> commandName;
 
-    bool commandNameOk = false;
-
-    for (const auto &elem : commandNames)
-    {
-      if (commandName == elem)
-      {
-        commandNameOk = true;
-        break;
-      }
+    auto it = mInterps.find(commandName);
+    if (it == mInterps.end()){
+      cerr << "nie znaleziono interpretera dla polecenia : " << commandName << endl;
+      continue;
     }
 
-    if (!commandNameOk)
-    {
-      cerr << "bledna nazwa komendy: " << commandName << " w pliku: " << line << " " << commandFileName << endl;
-      return 1;
-    }
+    AbstractInterp4Command * interp = it->second();
 
-    string libName = "libInterp4" + commandName + ".so"; // przygotowana nazwa biblioteki dynamicznej
 
-    void *pLibHandle = dlopen(libName.c_str(), RTLD_LAZY); // uchwyt do biblioteki
 
-    if (!pLibHandle)
-    {
-      cerr << "!!! Brak biblioteki: " << libName << endl;
-      cerr << dlerror() << endl;
-      return 1;
-    }
+    // // wskaznik na funkcje ktora zwraca AbstractInterp4Command * i nie przyjmuje argumentow
+    // pCreateCmd = reinterpret_cast<AbstractInterp4Command *(*)()>(pFun);
+    // std::unique_ptr<AbstractInterp4Command> pCmd(pCreateCmd());
 
-    cout << "Zaladowalem biblioteke: " << libName << endl;
+    // pCmd->ReadParams(iss);
+    // cout << endl;
 
-    openLibs.push_back(pLibHandle);
-    AbstractInterp4Command *(*pCreateCmd)(void); // wskaznik na funkcje ktora zwraca AbstractInterp4Command * i nie przyjmuje argumentow
-    void *pFun = dlsym(pLibHandle, "CreateCmd");
+    // cout << "dostalem komende: " << pCmd->GetCmdName() << "\n";
+    // // pCmd->PrintParams();
+    // cout << endl;
 
-    if (!pFun)
-    {
-      cerr << "!!! Nie znaleziono funkcji CreateCmd dla polecenia" << commandName << endl;
-      return 1;
-    }
-
-    pCreateCmd = reinterpret_cast<AbstractInterp4Command *(*)()>(pFun);
-    std::unique_ptr<AbstractInterp4Command> pCmd(pCreateCmd());
-    pCmd->ReadParams(iss);
-    cout << endl;
-
-    cout << "dodalem komende: " << pCmd->GetCmdName() << " do vectora polecen! \n";
-    // pCmd->PrintParams();
-    cout << endl;
-
-    commands.push_back(std::move(pCmd));
+    // // exec
+    // // delete cmd
   }
 
   commandFile.close();
@@ -189,18 +203,6 @@ int main(int argc, char **argv)
       rotate->ExecCmd(scene, robotName.c_str(), comChannel);
       delete rotate;
     }
-    // else if (std::strcmp(name.c_str(), "Set") == 0)
-    // {
-    //   auto *set = dynamic_cast<Interp4Set *>(cmd.get());
-    //   std::string robotName = set->GetRobotName();
-    //   set->ExecCmd(scene, robotName.c_str(), comChannel);
-    //   delete set;
-    // }
-  }
-
-  for (const auto &lib : openLibs)
-  {
-    dlclose(lib);
   }
 
   ClientSender.CancelCountinueLooping();
