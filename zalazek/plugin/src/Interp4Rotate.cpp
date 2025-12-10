@@ -148,7 +148,6 @@ bool Interp4Rotate::ExecCmd(AbstractScene &rScn, const char *sMobObjName, Abstra
     for (int i = 0; i < steps; ++i)
     {
         orientation[axisIndex] += single_step_deg;
-
         pAccess->LockAccess();
         pObj->SetRotXYZ_deg(orientation);
         pAccess->MarkChange();

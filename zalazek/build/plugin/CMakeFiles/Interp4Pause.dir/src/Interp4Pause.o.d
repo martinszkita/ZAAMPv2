@@ -191,4 +191,6 @@ plugin/CMakeFiles/Interp4Pause.dir/src/Interp4Pause.o: \
  /usr/include/c++/13/bits/sstream.tcc /usr/include/c++/13/thread \
  /usr/include/c++/13/bits/std_thread.h \
  /usr/include/c++/13/bits/unique_ptr.h \
- /usr/include/c++/13/bits/this_thread_sleep.h /usr/include/c++/13/chrono
+ /usr/include/c++/13/bits/this_thread_sleep.h /usr/include/c++/13/chrono \
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/../inc/AccessControl.hh \
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/../inc/ComChannel.hh

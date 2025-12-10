@@ -188,4 +188,8 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: \
  /usr/include/c++/13/ctime /usr/include/c++/13/bits/parse_numbers.h \
  /usr/include/c++/13/bits/std_mutex.h \
  /usr/include/c++/13/bits/unique_lock.h /usr/include/c++/13/sstream \
- /usr/include/c++/13/bits/sstream.tcc
+ /usr/include/c++/13/bits/sstream.tcc \
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/../inc/ComChannel.hh \
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/../inc/AccessControl.hh \
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/../inc/MobileObj.hh \
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/../inc/StateNumber.hh

@@ -6,10 +6,16 @@
         <Lib Name="libInterp4Set.so"/>
     </Plugins>
         <Objects>
-        <Cube Name="Podstawa" Shift="0 -0.5 0" Scale="0.7 0.7 0.2"
-        RotXYZ_deg="10 0 0" Trans_m="0.1 0 0" RGB="0 0 255"/>
-        <Cube Name="Podstawa.Ramie1" Shift="0 -0.5 0" Scale="0.1 0.1 0.6" Trans_m="0 0.7 0"/>
-        <Cube Name="Podstawa.Ramie1.Ramie2" Shift="0 -0.5 0" Scale="0.1 0.1 0.6"
-        Trans_m="0 0.7 0"/>
-    </Objects>
+            <Cube Name="Podstawa" Shift="0 -0.5 0" Scale="0.7 0.7 0.2"
+            RotXYZ_deg="10 0 0" Trans_m="0.1 0 0" RGB="0 0 255"/>
+            <Cube Name="Podstawa.Ramie1" Shift="0 -0.5 0" Scale="0.1 0.1 0.6" Trans_m="0 0.7 0"/>
+            <Cube Name="Podstawa.Ramie1.Ramie2" Shift="0 -0.5 0" Scale="0.1 0.1 0.6"
+            Trans_m="0 0.7 0"/>
+
+            <Cube Name="Podstawa2" Shift="1 2 0" Scale="1 1 1"
+            RotXYZ_deg="90 -90 0" Trans_m="1 0 -1" RGB="255 0 0"/>
+            <Cube Name="Podstawa2.Ramie21" Shift="-1 0 0" Scale="0.5 0.5 1" Trans_m="-1 -1 2"/>
+            <Cube Name="Podstawa.Ramie21.Ramie22" Shift="0 -0.5 0" Scale="1 2 3"
+            Trans_m="0 0 0"/>
+        </Objects>
 </Config>

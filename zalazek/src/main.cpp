@@ -24,12 +24,75 @@
 #include <filesystem>
 #include <cstdlib>
 
-#define INTERP4(commandName) Interp4#commandName
-
 using namespace std;
 
-namespace {
+// funkcja pomocnicza do wykonywania pojedynczej linii z poleceniem
+void ExecuteSingleCommandLine(const std::string &line,
+                              Scene &scene,
+                              ComChannel &comChannel,
+                              std::map<std::string, AbstractInterp4Command *(*)()> &mInterps)
+{
+  if (line.empty())
+    return;
 
+  std::istringstream iss(line);
+  std::string commandName;
+
+  iss >> commandName;
+
+  if (commandName.empty())
+  {
+    return;
+  }
+
+  auto it = mInterps.find(commandName);
+  if (it == mInterps.end())
+  {
+    std::cerr << "nie znaleziono interpretera dla polecenia : " << commandName << std::endl;
+    return;
+  }
+
+  std::unique_ptr<AbstractInterp4Command> interp(it->second());
+
+  if (!interp)
+  {
+    std::cerr << "nie udało się utworzyć interpretera polecenia: " << commandName << std::endl;
+    return;
+  }
+
+  if (!interp->ReadParams(iss))
+  {
+    std::cerr << "Błąd wczytywania parametrów dla polecenia: " << commandName << std::endl;
+    return;
+  }
+
+  std::string name = interp->GetCmdName();
+  std::string robotName;
+
+  if (auto move = dynamic_cast<Interp4Move *>(interp.get()))
+  {
+    robotName = move->getRobotName();
+  }
+  else if (auto rotate = dynamic_cast<Interp4Rotate *>(interp.get()))
+  {
+    robotName = rotate->GetRobotName();
+  }
+  else if (auto set = dynamic_cast<Interp4Set *>(interp.get()))
+  {
+    robotName = set->GetRobotName();
+  }
+  else if (auto pause = dynamic_cast<Interp4Pause *>(interp.get()))
+  {
+    robotName = pause->GetRobotName();
+  }
+
+  if (!interp->ExecCmd(scene, robotName.c_str(), comChannel))
+  {
+    std::cerr << "Wykonanie polecenia " << name << " nie powiodło się" << std::endl;
+  }
+}
+
+// owija sciezke w ćwirbelki
 std::string QuotePath(const std::filesystem::path &path)
 {
   std::ostringstream oss;
@@ -41,8 +104,8 @@ std::string QuotePath(const std::filesystem::path &path)
 bool PreprocessCommandsFile(const std::string &sourceFile,
                             std::filesystem::path &outputFile)
 {
-  outputFile =  std::filesystem::path(sourceFile).parent_path()/
-    (std::filesystem::path(sourceFile).filename().string() + ".pp");
+  outputFile = std::filesystem::path(sourceFile).parent_path() /
+               (std::filesystem::path(sourceFile).filename().string() + ".pp");
 
   std::ostringstream command;
   command << "cpp -P -nostdinc -undef "
@@ -58,8 +121,6 @@ bool PreprocessCommandsFile(const std::string &sourceFile,
   }
 
   return true;
-}
-
 }
 
 int main(int argc, char **argv)
@@ -90,7 +151,6 @@ int main(int argc, char **argv)
     cerr << "command file opening error" << endl;
     return 1;
   }
-
 
   map<string, void *> mLoadedLibraries;
   map<string, AbstractInterp4Command *(*)()> mInterps;
@@ -200,6 +260,8 @@ int main(int argc, char **argv)
 
   // wczytywanie poleceń z pliku i natychmiastowe ich wykonywanie
   string line;
+  vector<string> parallel_buffer;
+  bool loading_parallel = false;
 
   while (getline(commandFile, line))
   {
@@ -208,9 +270,9 @@ int main(int argc, char **argv)
       continue;
     }
 
-    istringstream iss(line);
-    string commandName;
-
+    // Pierwsze słowo w linii
+    std::istringstream iss(line);
+    std::string commandName;
     iss >> commandName;
 
     if (commandName.empty())
@@ -218,51 +280,50 @@ int main(int argc, char **argv)
       continue;
     }
 
-    auto it = mInterps.find(commandName);
-    if (it == mInterps.end())
+    if (commandName == "Begin_Parallel_Actions")
     {
-      cerr << "nie znaleziono interpretera dla polecenia : " << commandName << endl;
+      loading_parallel = true;
+      parallel_buffer.clear();
       continue;
     }
 
-    std::unique_ptr<AbstractInterp4Command> interp(it->second());
-
-    if (!interp)
+    if (commandName == "End_Parallel_Actions")
     {
-      cerr << "nie udało się utworzyć interpretera polecenia: " << commandName << endl;
+
+      // uruchomienie wątków dla zebranych komend do równoległego wykonywania
+      std::vector<std::thread> threads;
+
+      for (const auto &cmdLine : parallel_buffer)
+      {
+
+        threads.emplace_back(
+            [&scene, &comChannel, &mInterps, cmdLine]()
+            {
+              ExecuteSingleCommandLine(cmdLine, scene, comChannel, mInterps);
+            });
+      }
+
+      // Czekamy aż wszystkie wątki skończą
+      for (auto &t : threads)
+      {
+        if (t.joinable())
+          t.join();
+      }
+
+      parallel_buffer.clear();
+      loading_parallel = false;
       continue;
     }
 
-    if (!interp->ReadParams(iss))
+    // Jeśli jesteśmy w bloku równoległym, tylko zbieramy linie
+    if (loading_parallel)
     {
-      cerr << "Błąd wczytywania parametrów dla polecenia: " << commandName << endl;
+      parallel_buffer.push_back(line);
       continue;
     }
 
-    std::string name = interp->GetCmdName();
-    std::string robotName;
-
-    if (auto move = dynamic_cast<Interp4Move *>(interp.get()))
-    {
-      robotName = move->getRobotName();
-    }
-    else if (auto rotate = dynamic_cast<Interp4Rotate *>(interp.get()))
-    {
-      robotName = rotate->GetRobotName();
-    }
-    else if (auto set = dynamic_cast<Interp4Set *>(interp.get()))
-    {
-      robotName = set->GetRobotName();
-    }
-    else if (auto pause = dynamic_cast<Interp4Pause *>(interp.get()))
-    {
-      robotName = pause->GetRobotName();
-    }
-
-    if (!interp->ExecCmd(scene, robotName.c_str(), comChannel))
-    {
-      cerr << "Wykonanie polecenia " << name << " nie powiodło się" << endl;
-    }
+    // poza blokiem równoległym normalne sekwencyjne wykonanie
+    ExecuteSingleCommandLine(line, scene, comChannel, mInterps);
   }
 
   commandFile.close();

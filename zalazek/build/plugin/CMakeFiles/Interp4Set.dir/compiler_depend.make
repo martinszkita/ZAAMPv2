@@ -6,7 +6,11 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: /home/marcin/PWr/sem7/ZAAMP/Z
   /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractInterp4Command.hh \
   /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractMobileObj.hh \
   /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractScene.hh \
+  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AccessControl.hh \
+  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/ComChannel.hh \
   /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/GeomVector.hh \
+  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/MobileObj.hh \
+  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/StateNumber.hh \
   /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/Vector3D.hh \
   /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/inc/Interp4Set.hh \
   /usr/include/alloca.h \
@@ -363,15 +367,17 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: /home/marcin/PWr/sem7/ZAAMP/Z
 
 /usr/include/pthread.h:
 
-/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
-
-/usr/include/locale.h:
-
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
 /usr/include/linux/errno.h:
 
 /usr/include/features.h:
+
+/usr/include/ctype.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h:
+
+/usr/include/c++/13/tuple:
 
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
@@ -405,6 +411,12 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: /home/marcin/PWr/sem7/ZAAMP/Z
 
 /usr/include/c++/13/bits/ios_base.h:
 
+/usr/include/x86_64-linux-gnu/sys/single_threaded.h:
+
+/usr/include/c++/13/type_traits:
+
+/usr/include/c++/13/tr1/hypergeometric.tcc:
+
 /usr/include/asm-generic/errno-base.h:
 
 /usr/include/features-time64.h:
@@ -414,6 +426,32 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: /home/marcin/PWr/sem7/ZAAMP/Z
 /usr/include/errno.h:
 
 /usr/include/c++/13/bits/functional_hash.h:
+
+/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/c++/13/streambuf:
+
+/usr/include/c++/13/bits/exception.h:
+
+/usr/include/c++/13/typeinfo:
+
+/usr/include/c++/13/bits/cxxabi_init_exception.h:
+
+/usr/include/math.h:
+
+/usr/include/c++/13/bits/exception_defines.h:
+
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/Vector3D.hh:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/c++/13/bits/localefwd.h:
+
+/usr/include/c++/13/bits/cxxabi_forced.h:
+
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/MobileObj.hh:
 
 /usr/include/c++/13/bits/nested_exception.h:
 
@@ -431,57 +469,21 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: /home/marcin/PWr/sem7/ZAAMP/Z
 
 /usr/include/c++/13/cmath:
 
-/usr/include/c++/13/bits/specfun.h:
-
 /usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
 /usr/include/c++/13/bits/locale_classes.h:
 
-/usr/include/ctype.h:
+/usr/include/x86_64-linux-gnu/bits/pthreadtypes-arch.h:
 
-/usr/include/x86_64-linux-gnu/bits/endianness.h:
+/usr/include/locale.h:
 
-/usr/include/c++/13/bits/basic_string.h:
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/ComChannel.hh:
 
-/usr/include/c++/13/tr1/poly_laguerre.tcc:
-
-/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/Vector3D.hh:
-
-/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
-
-/usr/include/c++/13/bits/localefwd.h:
-
-/usr/include/math.h:
-
-/usr/include/c++/13/bits/exception_defines.h:
+/usr/include/c++/13/bits/chrono.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
 
 /usr/include/c++/13/bits/basic_ios.h:
-
-/usr/include/alloca.h:
-
-/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractComChannel.hh:
-
-/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractScene.hh:
-
-/usr/include/c++/13/bits/locale_facets.tcc:
-
-/usr/include/c++/13/bits/requires_hosted.h:
-
-/usr/include/c++/13/bits/string_view.tcc:
-
-/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
-
-/usr/include/c++/13/tr1/modified_bessel_func.tcc:
-
-/usr/include/c++/13/backward/binders.h:
-
-/usr/include/c++/13/bits/stringfwd.h:
-
-/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractInterp4Command.hh:
-
-/usr/include/c++/13/bits/stl_iterator_base_types.h:
 
 /usr/include/c++/13/bits/parse_numbers.h:
 
@@ -497,21 +499,45 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: /home/marcin/PWr/sem7/ZAAMP/Z
 
 /usr/include/c++/13/cwchar:
 
-/usr/include/c++/13/bits/cxxabi_forced.h:
+/usr/include/alloca.h:
 
-/usr/include/assert.h:
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractScene.hh:
 
-/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/inc/Interp4Set.hh:
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractComChannel.hh:
 
 /usr/include/c++/13/bits/basic_string.tcc:
 
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/StateNumber.hh:
+
 /usr/include/c++/13/bit:
 
-/usr/include/x86_64-linux-gnu/sys/single_threaded.h:
+/usr/include/c++/13/mutex:
 
-/usr/include/c++/13/tr1/hypergeometric.tcc:
+/usr/include/c++/13/bits/unique_lock.h:
 
-/usr/include/c++/13/type_traits:
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractInterp4Command.hh:
+
+/usr/include/c++/13/bits/stl_iterator_base_types.h:
+
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/inc/Interp4Set.hh:
+
+/usr/include/assert.h:
+
+/usr/include/c++/13/bits/locale_facets.tcc:
+
+/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AccessControl.hh:
+
+/usr/include/c++/13/bits/requires_hosted.h:
+
+/usr/include/c++/13/bits/string_view.tcc:
+
+/usr/include/x86_64-linux-gnu/bits/waitstatus.h:
+
+/usr/include/c++/13/tr1/modified_bessel_func.tcc:
+
+/usr/include/c++/13/backward/binders.h:
+
+/usr/include/c++/13/bits/stringfwd.h:
 
 /usr/include/c++/13/ios:
 
@@ -522,6 +548,14 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: /home/marcin/PWr/sem7/ZAAMP/Z
 /usr/include/c++/13/new:
 
 /usr/include/c++/13/ext/alloc_traits.h:
+
+/usr/include/x86_64-linux-gnu/bits/endianness.h:
+
+/usr/include/c++/13/tr1/poly_laguerre.tcc:
+
+/usr/include/c++/13/bits/basic_string.h:
+
+/usr/include/c++/13/bits/specfun.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
@@ -539,16 +573,6 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: /home/marcin/PWr/sem7/ZAAMP/Z
 
 /usr/include/c++/13/bits/locale_facets.h:
 
-/usr/include/c++/13/bits/chrono.h:
-
-/usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
-
-/usr/include/c++/13/streambuf:
-
-/usr/include/c++/13/bits/exception.h:
-
 /usr/include/c++/13/bits/move.h:
 
 /usr/include/x86_64-linux-gnu/bits/types.h:
@@ -556,6 +580,12 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: /home/marcin/PWr/sem7/ZAAMP/Z
 /usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
 /usr/include/c++/13/bits/cpp_type_traits.h:
+
+/usr/include/c++/13/ratio:
+
+/usr/include/c++/13/cwctype:
+
+/usr/include/c++/13/bits/sstream.tcc:
 
 /usr/include/c++/13/bits/stl_algobase.h:
 
@@ -619,19 +649,15 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: /home/marcin/PWr/sem7/ZAAMP/Z
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h:
 
-/usr/include/c++/13/bits/charconv.h:
-
 /usr/include/c++/13/bits/stl_pair.h:
+
+/usr/include/c++/13/bits/charconv.h:
 
 /usr/include/c++/13/cstdio:
 
 /usr/include/c++/13/ctime:
 
 /usr/include/c++/13/debug/assertions.h:
-
-/usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h:
-
-/usr/include/c++/13/tuple:
 
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
@@ -653,16 +679,6 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: /home/marcin/PWr/sem7/ZAAMP/Z
 
 /usr/include/c++/13/limits:
 
-/usr/include/c++/13/bits/unique_lock.h:
-
-/usr/include/c++/13/mutex:
-
-/usr/include/c++/13/bits/sstream.tcc:
-
-/usr/include/c++/13/cwctype:
-
-/usr/include/c++/13/ratio:
-
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
 /usr/include/c++/13/pstl/pstl_config.h:
@@ -672,10 +688,6 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o: /home/marcin/PWr/sem7/ZAAMP/Z
 /usr/include/c++/13/bits/range_access.h:
 
 /usr/include/c++/13/system_error:
-
-/usr/include/c++/13/bits/cxxabi_init_exception.h:
-
-/usr/include/c++/13/typeinfo:
 
 /usr/include/c++/13/tr1/bessel_function.tcc:
 

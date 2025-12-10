@@ -178,4 +178,5 @@ CMakeFiles/cmds_interpreter.dir/src/MobileObj.o: \
  /usr/include/c++/13/tr1/riemann_zeta.tcc /usr/include/c++/13/cassert \
  /usr/include/assert.h \
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/StateNumber.hh \
- /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/Vector3D.hh
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/Vector3D.hh \
+ /usr/include/c++/13/sstream /usr/include/c++/13/bits/sstream.tcc

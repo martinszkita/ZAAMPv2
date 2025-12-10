@@ -7,6 +7,8 @@ plugin/CMakeFiles/Interp4Move.dir/src/Interp4Move.o
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractInterp4Command.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractMobileObj.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractScene.hh
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AccessControl.hh
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/ComChannel.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/GeomVector.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/Vector3D.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/inc/Interp4Move.hh
@@ -14,8 +16,10 @@ plugin/CMakeFiles/Interp4Move.dir/src/Interp4Move.o
  /usr/include/asm-generic/errno-base.h
  /usr/include/asm-generic/errno.h
  /usr/include/assert.h
+ /usr/include/c++/13/algorithm
  /usr/include/c++/13/backward/binders.h
  /usr/include/c++/13/bit
+ /usr/include/c++/13/bits/algorithmfwd.h
  /usr/include/c++/13/bits/alloc_traits.h
  /usr/include/c++/13/bits/allocator.h
  /usr/include/c++/13/bits/basic_ios.h
@@ -60,24 +64,32 @@ plugin/CMakeFiles/Interp4Move.dir/src/Interp4Move.o
  /usr/include/c++/13/bits/specfun.h
  /usr/include/c++/13/bits/std_abs.h
  /usr/include/c++/13/bits/std_mutex.h
+ /usr/include/c++/13/bits/std_thread.h
+ /usr/include/c++/13/bits/stl_algo.h
  /usr/include/c++/13/bits/stl_algobase.h
  /usr/include/c++/13/bits/stl_construct.h
  /usr/include/c++/13/bits/stl_function.h
+ /usr/include/c++/13/bits/stl_heap.h
  /usr/include/c++/13/bits/stl_iterator.h
  /usr/include/c++/13/bits/stl_iterator_base_funcs.h
  /usr/include/c++/13/bits/stl_iterator_base_types.h
  /usr/include/c++/13/bits/stl_pair.h
+ /usr/include/c++/13/bits/stl_tempbuf.h
  /usr/include/c++/13/bits/streambuf.tcc
  /usr/include/c++/13/bits/streambuf_iterator.h
  /usr/include/c++/13/bits/string_view.tcc
  /usr/include/c++/13/bits/stringfwd.h
+ /usr/include/c++/13/bits/this_thread_sleep.h
+ /usr/include/c++/13/bits/uniform_int_dist.h
  /usr/include/c++/13/bits/unique_lock.h
+ /usr/include/c++/13/bits/unique_ptr.h
  /usr/include/c++/13/bits/uses_allocator.h
  /usr/include/c++/13/bits/uses_allocator_args.h
  /usr/include/c++/13/bits/utility.h
  /usr/include/c++/13/cassert
  /usr/include/c++/13/cctype
  /usr/include/c++/13/cerrno
+ /usr/include/c++/13/chrono
  /usr/include/c++/13/clocale
  /usr/include/c++/13/cmath
  /usr/include/c++/13/cstddef
@@ -104,6 +116,8 @@ plugin/CMakeFiles/Interp4Move.dir/src/Interp4Move.o
  /usr/include/c++/13/mutex
  /usr/include/c++/13/new
  /usr/include/c++/13/ostream
+ /usr/include/c++/13/pstl/execution_defs.h
+ /usr/include/c++/13/pstl/glue_algorithm_defs.h
  /usr/include/c++/13/pstl/pstl_config.h
  /usr/include/c++/13/ratio
  /usr/include/c++/13/stdexcept
@@ -111,6 +125,7 @@ plugin/CMakeFiles/Interp4Move.dir/src/Interp4Move.o
  /usr/include/c++/13/string
  /usr/include/c++/13/string_view
  /usr/include/c++/13/system_error
+ /usr/include/c++/13/thread
  /usr/include/c++/13/tr1/bessel_function.tcc
  /usr/include/c++/13/tr1/beta_function.tcc
  /usr/include/c++/13/tr1/ell_integral.tcc

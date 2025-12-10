@@ -7,6 +7,8 @@ plugin/CMakeFiles/Interp4Pause.dir/src/Interp4Pause.o
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractInterp4Command.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractMobileObj.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractScene.hh
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AccessControl.hh
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/ComChannel.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/GeomVector.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/Vector3D.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/inc/Interp4Pause.hh

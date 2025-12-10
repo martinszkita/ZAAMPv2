@@ -172,6 +172,10 @@ cmds_interpreter: CMakeFiles/cmds_interpreter.dir/src/Scene.o
 cmds_interpreter: CMakeFiles/cmds_interpreter.dir/src/Sender.o
 cmds_interpreter: CMakeFiles/cmds_interpreter.dir/src/xmlinterp.o
 cmds_interpreter: CMakeFiles/cmds_interpreter.dir/build.make
+cmds_interpreter: plugin/libInterp4Move.so
+cmds_interpreter: plugin/libInterp4Set.so
+cmds_interpreter: plugin/libInterp4Rotate.so
+cmds_interpreter: plugin/libInterp4Pause.so
 cmds_interpreter: /usr/lib/x86_64-linux-gnu/libxerces-c.so
 cmds_interpreter: CMakeFiles/cmds_interpreter.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable cmds_interpreter"

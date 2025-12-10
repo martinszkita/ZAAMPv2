@@ -1,1 +1,1 @@
-/usr/bin/c++ -fPIC -shared  -o libInterp4Set.so CMakeFiles/Interp4Set.dir/src/Interp4Set.o 
+/usr/bin/c++ -fPIC -shared -Wl,-soname,libInterp4Set.so -o libInterp4Set.so CMakeFiles/Interp4Set.dir/src/Interp4Set.o 

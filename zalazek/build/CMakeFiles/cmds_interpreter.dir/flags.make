@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc
+CXX_INCLUDES = -I/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc -I/home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/inc
 
 CXX_FLAGS = 
 

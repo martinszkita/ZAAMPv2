@@ -7,7 +7,11 @@ plugin/CMakeFiles/Interp4Set.dir/src/Interp4Set.o
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractInterp4Command.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractMobileObj.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AbstractScene.hh
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/AccessControl.hh
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/ComChannel.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/GeomVector.hh
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/MobileObj.hh
+ /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/StateNumber.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/inc/Vector3D.hh
  /home/marcin/PWr/sem7/ZAAMP/ZAAMP2025/zalazek/plugin/inc/Interp4Set.hh
  /usr/include/alloca.h
